@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HueApplication</string>
+    <string name="main_good_day">Good-day</string>
 </resources>
