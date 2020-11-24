@@ -1,9 +1,14 @@
 package com.dlvjkb.hueapplication.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class LightBulb {
+import java.io.Serializable;
+
+public class LightBulb implements Serializable {
     private String modelId;
     public String name;
     private String swVersion;

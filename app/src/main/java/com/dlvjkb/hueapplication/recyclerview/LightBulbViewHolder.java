@@ -9,15 +9,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dlvjkb.hueapplication.R;
 
-public class HorizontalViewHolder extends RecyclerView.ViewHolder  {
+public class LightBulbViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
 
     public TextView lightBulbName;
     public ImageView lightBulbImage;
+    private LightBulbClickListener listener;
 
-    public HorizontalViewHolder(@NonNull View itemView) {
+    public LightBulbViewHolder(@NonNull View itemView, LightBulbClickListener listener) {
         super(itemView);
 
         this.lightBulbName = itemView.findViewById(R.id.tvLightBulbName);
         this.lightBulbImage = itemView.findViewById(R.id.ivLightBulb);
+        this.listener = listener;
+        
+        itemView.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        int position = getAdapterPosition();
+        listener.onLightBulbClick(position);
     }
 }

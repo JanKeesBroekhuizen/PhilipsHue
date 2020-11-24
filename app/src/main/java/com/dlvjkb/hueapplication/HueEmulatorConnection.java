@@ -10,6 +10,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.dlvjkb.hueapplication.model.LightBulb;
+import com.dlvjkb.hueapplication.model.LightBulbLoadListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,22 +18,27 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class HueEmulatorConnection {
+    private static HueEmulatorConnection instance = null;
+
+    synchronized public static HueEmulatorConnection getInstance(Context context, LightBulbLoadListener listener){
+        if (instance == null){
+            instance = new HueEmulatorConnection(context, listener);
+        }
+        return instance;
+    }
+
     private final String TAG = HueEmulatorConnection.class.getName();
 
     private RequestQueue requestQueue;
-    //private LightBulbLoadListener listener;
-    private ArrayList<LightBulb> lightBulbList;
+    private LightBulbLoadListener listener;
 
 
-    HueEmulatorConnection(Context context /*, LightBulbLoadListener listener*/){
+    HueEmulatorConnection(Context context, LightBulbLoadListener listener){
         this.requestQueue = Volley.newRequestQueue(context);
-        //this.listener = listener;
-        lightBulbList = new ArrayList<>();
-
-        initLights();
+        this.listener = listener;
     }
 
-    public void initLights(){
+    public void initLightBulbs(){
         final String url = "http://192.168.178.91/api/newdeveloper/lights";
         final JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
@@ -48,8 +54,7 @@ public class HueEmulatorConnection {
 
                                 JSONObject lightObject = response.getJSONObject(lightNumber + "");
                                 LightBulb lightBulb = new LightBulb(lightObject);
-                                lightBulbList.add(lightBulb);
-                                //listener.onLightBulbAvailable(lightBulb);
+                                listener.onLightBulbAvailable(lightBulb);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -66,9 +71,5 @@ public class HueEmulatorConnection {
                 }
         );
         requestQueue.add(request);
-    }
-
-    public ArrayList<LightBulb> getLightBulbs(){
-        return lightBulbList;
     }
 }

@@ -11,12 +11,15 @@ import android.util.Log;
 import android.view.MenuItem;
 import java.util.ArrayList;
 import com.dlvjkb.hueapplication.fragments.*;
+import com.dlvjkb.hueapplication.model.LightBulb;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
 public class MainScreenActivity extends AppCompatActivity {
 
+    private HueEmulatorConnection hueEmulatorConnection;
+    public static ArrayList<LightBulb> lightBulbs;
     private final String TAG = MainScreenActivity.class.getSimpleName();
     private final List<Fragment> accessibleFragments = new ArrayList<>();
     private Fragment currentFragment = null;
@@ -50,6 +53,7 @@ public class MainScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         setupFragmentList();
 
         FragmentManager fragmentManager = getSupportFragmentManager();

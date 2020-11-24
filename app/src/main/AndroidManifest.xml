@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PhilipsHue"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".SplashScreenActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainScreenActivity"/>
+        <activity android:name=".MainScreenActivity" android:screenOrientation="portrait"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
