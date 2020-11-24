@@ -9,20 +9,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-
-import java.io.IOException;
 import java.util.ArrayList;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-import com.dlvjkb.hueapplication.fragments.AddFragment;
-import com.dlvjkb.hueapplication.fragments.LightsFragment;
-import com.dlvjkb.hueapplication.fragments.SettingsFragment;
+import com.dlvjkb.hueapplication.fragments.*;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainScreenActivity extends AppCompatActivity {
@@ -71,11 +61,11 @@ public class MainScreenActivity extends AppCompatActivity {
         BottomNavigationView navigationView = findViewById(R.id.bottomNavigationView);
         navigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
-        HueEmulatorConnection connection = new HueEmulatorConnection(getApplicationContext());
-        ArrayList<LightBulb> lightBulbs = connection.getLightBulbs();
-        for (int i = 0; i < lightBulbs.size(); i++){
-            lightBulbs.get(i).toString();
-        }
+//        HueEmulatorConnection connection = new HueEmulatorConnection(getApplicationContext());
+//        ArrayList<LightBulb> lightBulbs = connection.getLightBulbs();
+//        for (int i = 0; i < lightBulbs.size(); i++){
+//            lightBulbs.get(i).toString();
+//        }
     }
 
     private void setupFragmentList(){

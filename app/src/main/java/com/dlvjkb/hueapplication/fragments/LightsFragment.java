@@ -36,7 +36,7 @@ public class LightsFragment extends Fragment {
         horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
                 LinearLayoutManager.HORIZONTAL,
                 false));
-        testLightBulb();
+        //testLightBulb();
 
         return view;
     }
@@ -59,19 +59,19 @@ public class LightsFragment extends Fragment {
         }
     }
 
-    private void testLightBulb(){
-        boolean state;
-        ArrayList<LightBulb> bulbs = new ArrayList<>();
-        for (int i = 0 ; i < 10 ; i++){
-            if (i%2==0){
-                state = true;
-            }else {
-                state = false;
-            }
-            bulbs.add(new LightBulb(i,"Hello",state));
-        }
-        HorizontalAdapter adapter = new HorizontalAdapter(getContext(), bulbs);
-        horizontalRecyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
+//    private void testLightBulb(){
+//        boolean state;
+//        ArrayList<LightBulb> bulbs = new ArrayList<>();
+//        for (int i = 0 ; i < 10 ; i++){
+//            if (i%2==0){
+//                state = true;
+//            }else {
+//                state = false;
+//            }
+//            bulbs.add(new LightBulb(i,"Hello",state));
+//        }
+//        HorizontalAdapter adapter = new HorizontalAdapter(getContext(), bulbs);
+//        horizontalRecyclerView.setAdapter(adapter);
+//        adapter.notifyDataSetChanged();
+//    }
 }

@@ -1,14 +1,38 @@
 package com.dlvjkb.hueapplication.model;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class LightBulb {
-
-    public int id;
+    private String modelId;
     public String name;
-    public boolean state;
+    private String swVersion;
+    public State state;
+    private String type;
+    private String uniqueId;
 
-    public LightBulb(int id, String name, boolean state) {
-        this.id = id;
-        this.name = name;
-        this.state = state;
+    public LightBulb(JSONObject jsonObject) {
+        try{
+            this.modelId = jsonObject.getString("modelid");
+            this.name = jsonObject.getString("name");
+            this.swVersion = jsonObject.getString("swversion");
+            this.state = new State(jsonObject.getJSONObject("state"));
+            this.type = jsonObject.getString("type");
+            this.uniqueId = jsonObject.getString("uniqueid");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "LightBulb{" +
+                "modelId='" + modelId + '\'' +
+                ", name='" + name + '\'' +
+                ", swVersion='" + swVersion + '\'' +
+                ", state=" + state +
+                ", type='" + type + '\'' +
+                ", uniqueId='" + uniqueId + '\'' +
+                '}';
     }
 }

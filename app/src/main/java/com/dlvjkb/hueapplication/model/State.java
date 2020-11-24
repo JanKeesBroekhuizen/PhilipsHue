@@ -1,4 +1,4 @@
-package com.dlvjkb.hueapplication;
+package com.dlvjkb.hueapplication.model;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,7 +17,7 @@ public class State {
     private int hue;
     private String colorMode;
     private boolean reachable;
-    private boolean on;
+    public boolean on;
 
     public State(JSONObject jsonObject) {
 

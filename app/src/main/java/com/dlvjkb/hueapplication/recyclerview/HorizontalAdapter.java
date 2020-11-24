@@ -38,7 +38,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalViewHolder
 
         HorizontalViewHolder viewHolder = holder;
         viewHolder.lightBulbName.setText(lightBulb.name);
-        if (lightBulb.state != true){
+        if (!lightBulb.state.on){
             Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.app_logo);
             viewHolder.lightBulbImage.setImageBitmap(bitmap);
         }else {
