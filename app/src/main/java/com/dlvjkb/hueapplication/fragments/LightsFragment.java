@@ -10,19 +10,34 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.dlvjkb.hueapplication.R;
+import com.dlvjkb.hueapplication.model.LightBulb;
+import com.dlvjkb.hueapplication.recyclerview.HorizontalAdapter;
 
-import java.sql.Time;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class LightsFragment extends Fragment {
+
+    private static RecyclerView horizontalRecyclerView;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_lights, container, false);
         setGooddayMessage(view);
+
+        horizontalRecyclerView = view.findViewById(R.id.rvHorizontalBulbs);
+        horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false));
+        testLightBulb();
+
         return view;
     }
 
@@ -42,5 +57,21 @@ public class HomeFragment extends Fragment {
             messageView.setText(messageView.getText(), TextView.BufferType.EDITABLE);
             ((Editable) messageView.getText()).insert(messageView.length(), "morning.");
         }
+    }
+
+    private void testLightBulb(){
+        boolean state;
+        ArrayList<LightBulb> bulbs = new ArrayList<>();
+        for (int i = 0 ; i < 10 ; i++){
+            if (i%2==0){
+                state = true;
+            }else {
+                state = false;
+            }
+            bulbs.add(new LightBulb(i,"Hello",state));
+        }
+        HorizontalAdapter adapter = new HorizontalAdapter(getContext(), bulbs);
+        horizontalRecyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 }
