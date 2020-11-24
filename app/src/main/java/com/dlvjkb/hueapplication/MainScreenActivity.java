@@ -3,8 +3,10 @@ package com.dlvjkb.hueapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -17,18 +19,10 @@ public class MainScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        OkHttpClient client = new OkHttpClient();
-        String bridgeUri = "http://localhost:8000/api/";
-        String username = "newdeveloper";
-        String category = "/lights";
-
-        final String uri = bridgeUri + username + category;
-        final Request allLightsRequest = new Request.Builder().url(uri).build();
-        try (Response response = client.newCall(allLightsRequest).execute()){
-            System.out.println(response.toString());
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        HueEmulatorConnection connection = new HueEmulatorConnection(getApplicationContext());
+        ArrayList<LightBulb> lightBulbs = connection.getLightBulbs();
+        for (int i = 0; i < lightBulbs.size(); i++){
+            lightBulbs.get(i).toString();
         }
     }
 }
