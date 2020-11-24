@@ -10,6 +10,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 import com.dlvjkb.hueapplication.fragments.AddFragment;
 import com.dlvjkb.hueapplication.fragments.LightsFragment;
 import com.dlvjkb.hueapplication.fragments.SettingsFragment;
@@ -63,6 +70,12 @@ public class MainScreenActivity extends AppCompatActivity {
         fragmentTransaction.commit();
         BottomNavigationView navigationView = findViewById(R.id.bottomNavigationView);
         navigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+
+        HueEmulatorConnection connection = new HueEmulatorConnection(getApplicationContext());
+        ArrayList<LightBulb> lightBulbs = connection.getLightBulbs();
+        for (int i = 0; i < lightBulbs.size(); i++){
+            lightBulbs.get(i).toString();
+        }
     }
 
     private void setupFragmentList(){
