@@ -6,16 +6,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/etBridgeIPAdress2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="e.g. 80"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvBridgeIP2"
+        app:layout_constraintTop_toBottomOf="@+id/tvBridgeIP2" />
+
     <TextView
-        android:id="@+id/tvGoodday"
+        android:id="@+id/tvBridgeIP2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/lato_black"
+        android:text="Bridge port number"
+        app:layout_constraintStart_toStartOf="@+id/tvSettingsTitle"
+        app:layout_constraintTop_toBottomOf="@+id/etBridgeIPAdress" />
+
+    <TextView
+        android:id="@+id/tvSettingsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/lato_black"
-        android:text="Hello, bye"
+        android:text="Settings"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvBridgeIP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/lato_black"
+        android:text="Bridge IP-address:"
+        app:layout_constraintStart_toStartOf="@+id/tvSettingsTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvSettingsTitle" />
+
+    <EditText
+        android:id="@+id/etBridgeIPAdress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="e.g. 192.168.1.1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvBridgeIP"
+        app:layout_constraintTop_toBottomOf="@+id/tvBridgeIP" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/lato_black"
+        android:text="Made By: Jan Kees Broekhuizen / Dave Visser"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

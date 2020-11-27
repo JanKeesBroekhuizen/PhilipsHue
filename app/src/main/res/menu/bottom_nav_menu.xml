@@ -8,11 +8,11 @@
         android:title="Lights"
         app:showAsAction="ifRoom" />
     <item
-    android:id="@+id/menu_add"
-    android:enabled="true"
-    android:icon="@drawable/menu_btn_add"
-    android:title="Add"
-    app:showAsAction="ifRoom"/>
+        android:id="@+id/menu_add"
+        android:enabled="true"
+        android:icon="@drawable/menu_btn_themes"
+        android:title="Add"
+        app:showAsAction="ifRoom" />
     <item
     android:id="@+id/menu_settings"
     android:enabled="true"

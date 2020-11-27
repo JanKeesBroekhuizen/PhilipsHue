@@ -14,11 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dlvjkb.hueapplication.R;
-import com.dlvjkb.hueapplication.model.LightBulb;
-import com.dlvjkb.hueapplication.recyclerview.HorizontalAdapter;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class LightsFragment extends Fragment {
 
@@ -42,7 +39,7 @@ public class LightsFragment extends Fragment {
     }
 
     private void setGooddayMessage(View view){
-        TextView messageView = view.findViewById(R.id.tvGoodday);
+        TextView messageView = view.findViewById(R.id.tvLightsTitle);
         LocalTime morning = LocalTime.parse("00:00");
         LocalTime afternoon = LocalTime.parse("12:00");
         LocalTime evening = LocalTime.parse("19:00");
