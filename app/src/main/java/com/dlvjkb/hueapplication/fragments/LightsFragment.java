@@ -12,13 +12,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dlvjkb.hueapplication.LightBulbDetailView;
-import com.dlvjkb.hueapplication.LightBulbStateManager;
+import com.dlvjkb.hueapplication.GroupDetailActivity;
+import com.dlvjkb.hueapplication.LightBulbDetailActivity;
 import com.dlvjkb.hueapplication.R;
 import com.dlvjkb.hueapplication.recyclerview.groups.GroupAdapter;
+import com.dlvjkb.hueapplication.recyclerview.groups.GroupClickListener;
+import com.dlvjkb.hueapplication.recyclerview.groups.GroupListListener;
 import com.dlvjkb.hueapplication.recyclerview.groups.GroupListManager;
 import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbAdapter;
 import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbClickListener;
@@ -27,7 +30,7 @@ import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbListManager;
 
 import java.time.LocalTime;
 
-public class LightsFragment extends Fragment implements LightBulbClickListener {
+public class LightsFragment extends Fragment implements LightBulbClickListener, GroupClickListener {
     private static final String TAG = LightsFragment.class.getName();
 
     private RecyclerView lightBulbRecyclerView;
@@ -41,14 +44,21 @@ public class LightsFragment extends Fragment implements LightBulbClickListener {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lights, container, false);
-        setGooddayMessage(view);
 
         LightBulbListManager.getInstance().clearLightBulbs();
 
+        //Initialisation methods..
+        setGooddayMessage(view);
+        initRecyclerViews(view);
+        startLightBulbs();
+        startGroups();
+        return view;
+    }
+
+    private void initRecyclerViews(View view){
         lightBulbRecyclerView = view.findViewById(R.id.rvLightBulb);
         lightBulbRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
-                LinearLayoutManager.VERTICAL,
-                false));
+                LinearLayoutManager.VERTICAL,false));
 
         lightBulbAdapter = new LightBulbAdapter(getContext(), LightBulbListManager.getInstance().getLightBulbs(), this);
         lightBulbRecyclerView.setAdapter(lightBulbAdapter);
@@ -62,9 +72,6 @@ public class LightsFragment extends Fragment implements LightBulbClickListener {
         groupAdapter = new GroupAdapter(getContext(), GroupListManager.getInstance().getGroups(), this);
         groupRecyclerView.setAdapter(groupAdapter);
         groupAdapter.notifyDataSetChanged();
-
-        startLightBulbs();
-        return view;
     }
 
     private void setGooddayMessage(View view){
@@ -89,7 +96,7 @@ public class LightsFragment extends Fragment implements LightBulbClickListener {
     public void onLightBulbClick(int position) {
         Log.d(TAG, "Clicked on fragment " + position);
         //Toast.makeText(getContext(), "Clicked on fragment " + position, Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(getContext(), LightBulbDetailView.class);
+        Intent intent = new Intent(getContext(), LightBulbDetailActivity.class);
         intent.putExtra("LightBulb", LightBulbListManager.getInstance().getLightBulb(position));
         intent.putExtra("position", position);
         startActivity(intent);
@@ -105,4 +112,19 @@ public class LightsFragment extends Fragment implements LightBulbClickListener {
     }
 
 
+    @Override
+    public void onGroupClick(int position) {
+        Log.d(TAG,"Clicked on grouprecyclerview: " + position);
+        Intent intent = new Intent(getContext(), GroupDetailActivity.class);
+        startActivity(intent);
+    }
+
+    public void startGroups(){
+        GroupListManager.getInstance().startGroups(getContext(), new GroupListListener() {
+            @Override
+            public void onGroupListChanged() {
+                groupAdapter.notifyDataSetChanged();
+            }
+        });
+    }
 }

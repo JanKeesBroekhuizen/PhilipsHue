@@ -37,7 +37,7 @@ public class HueLightBulbConnection {
     }
 
     public void initLightBulbs(){
-        final String url = "http://192.168.178.91:80/api/newdeveloper/lights";
+        final String url = "http://10.149.1.111:80/api/newdeveloper/lights";
         final JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,

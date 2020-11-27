@@ -2,14 +2,12 @@ package com.dlvjkb.hueapplication;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dlvjkb.hueapplication.model.LightBulb;
@@ -18,11 +16,11 @@ import com.flask.colorpicker.ColorPickerView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class LightBulbDetailView extends AppCompatActivity {
+public class LightBulbDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detailview_lightbulb);
+        setContentView(R.layout.detailactivity_lightbulb);
 
         LightBulb lightBulb = (LightBulb) getIntent().getSerializableExtra("LightBulb");
         int position = getIntent().getIntExtra("position", 1);

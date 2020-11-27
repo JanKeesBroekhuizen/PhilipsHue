@@ -21,7 +21,7 @@ public class LightBulbStateManager {
     }
 
     public void setLightState(JSONObject jsonObject, int lightNumber, int portNumber){
-        final String url = "http://192.168.178.91:" + portNumber + "/api/newdeveloper/lights/"+ lightNumber + "/state";
+        final String url = "http://10.149.1.1:" + portNumber + "/api/newdeveloper/lights/"+ lightNumber + "/state";
         JsonObjectRequest putRequest = new JsonObjectRequest(
                 Request.Method.PUT,
                 url,
