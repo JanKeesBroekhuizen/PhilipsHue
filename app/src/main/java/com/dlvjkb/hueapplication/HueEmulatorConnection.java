@@ -39,7 +39,7 @@ public class HueEmulatorConnection {
     }
 
     public void initLightBulbs(){
-        final String url = "http://192.168.178.91/api/newdeveloper/lights";
+        final String url = "http://192.168.178.91:80/api/newdeveloper/lights";
         final JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -59,7 +59,6 @@ public class HueEmulatorConnection {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
                 },
                 new Response.ErrorListener() {

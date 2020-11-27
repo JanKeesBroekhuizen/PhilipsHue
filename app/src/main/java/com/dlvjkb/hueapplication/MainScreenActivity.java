@@ -6,13 +6,21 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
 import java.util.ArrayList;
 import com.dlvjkb.hueapplication.fragments.*;
 import com.dlvjkb.hueapplication.model.LightBulb;
+import com.flask.colorpicker.ColorPickerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -65,11 +73,6 @@ public class MainScreenActivity extends AppCompatActivity {
         BottomNavigationView navigationView = findViewById(R.id.bottomNavigationView);
         navigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
-//        HueEmulatorConnection connection = new HueEmulatorConnection(getApplicationContext());
-//        ArrayList<LightBulb> lightBulbs = connection.getLightBulbs();
-//        for (int i = 0; i < lightBulbs.size(); i++){
-//            lightBulbs.get(i).toString();
-//        }
     }
 
     private void setupFragmentList(){

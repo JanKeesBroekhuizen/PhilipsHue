@@ -1,11 +1,14 @@
 package com.dlvjkb.hueapplication.fragments;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,12 +18,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dlvjkb.hueapplication.LightBulbDetailView;
+import com.dlvjkb.hueapplication.LightBulbStateManager;
 import com.dlvjkb.hueapplication.R;
 import com.dlvjkb.hueapplication.model.LightBulb;
 import com.dlvjkb.hueapplication.recyclerview.LightBulbAdapter;
 import com.dlvjkb.hueapplication.recyclerview.LightBulbClickListener;
 import com.dlvjkb.hueapplication.recyclerview.LightBulbListListener;
 import com.dlvjkb.hueapplication.recyclerview.LightBulbListManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -29,7 +37,7 @@ public class LightsFragment extends Fragment implements LightBulbClickListener {
     private static final String TAG = LightsFragment.class.getName();
 
     private static RecyclerView horizontalRecyclerView;
-    private ArrayList<LightBulb> lightBulbs = new ArrayList<>();
+    private LightBulbStateManager stateManager;
     private LightBulbAdapter adapter;
 
     @Nullable
@@ -76,7 +84,11 @@ public class LightsFragment extends Fragment implements LightBulbClickListener {
     @Override
     public void onLightBulbClick(int position) {
         Log.d(TAG, "Clicked on fragment " + position);
-        Toast.makeText(getContext(), "Clicked on fragment " + position, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getContext(), "Clicked on fragment " + position, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getContext(), LightBulbDetailView.class);
+        intent.putExtra("LightBulb", LightBulbListManager.getInstance().getLightBulb(position));
+        intent.putExtra("position", position);
+        startActivity(intent);
     }
 
     public void startLightBulbs(){
@@ -87,20 +99,4 @@ public class LightsFragment extends Fragment implements LightBulbClickListener {
             }
         });
     }
-
-//    private void testLightBulb(){
-//        boolean state;
-//        ArrayList<LightBulb> bulbs = new ArrayList<>();
-//        for (int i = 0 ; i < 10 ; i++){
-//            if (i%2==0){
-//                state = true;
-//            }else {
-//                state = false;
-//            }
-//            bulbs.add(new LightBulb(i,"Hello",state));
-//        }
-//        HorizontalAdapter adapter = new HorizontalAdapter(getContext(), bulbs);
-//        horizontalRecyclerView.setAdapter(adapter);
-//        adapter.notifyDataSetChanged();
-//    }
 }

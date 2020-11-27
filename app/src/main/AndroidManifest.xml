@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainScreenActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".LightBulbDetailView" android:screenOrientation="portrait"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>

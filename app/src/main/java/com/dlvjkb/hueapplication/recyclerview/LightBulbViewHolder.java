@@ -21,7 +21,7 @@ public class LightBulbViewHolder extends RecyclerView.ViewHolder  implements Vie
         this.lightBulbName = itemView.findViewById(R.id.tvLightBulbName);
         this.lightBulbImage = itemView.findViewById(R.id.ivLightBulb);
         this.listener = listener;
-        
+
         itemView.setOnClickListener(this);
     }
 
