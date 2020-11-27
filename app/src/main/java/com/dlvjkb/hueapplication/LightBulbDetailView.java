@@ -6,6 +6,8 @@ import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +29,10 @@ public class LightBulbDetailView extends AppCompatActivity {
 
         ColorPickerView colorPickerView = findViewById(R.id.color_picker_view);
         Button button = findViewById(R.id.button);
+        Switch lightSwitch = findViewById(R.id.LightSwitch);
+        lightSwitch.setChecked(true); //TODO get real switch state
         LightBulbStateManager stateManager = new LightBulbStateManager(getApplicationContext());
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +54,20 @@ public class LightBulbDetailView extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                stateManager.setLightState(jsonObject, position + 1, 80);
+            }
+        });
+
+        lightSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("on", isChecked);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                button.setEnabled(isChecked);
                 stateManager.setLightState(jsonObject, position + 1, 80);
             }
         });
