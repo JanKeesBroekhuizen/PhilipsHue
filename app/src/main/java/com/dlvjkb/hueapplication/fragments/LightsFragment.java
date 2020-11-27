@@ -1,16 +1,13 @@
 package com.dlvjkb.hueapplication.fragments;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,24 +18,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dlvjkb.hueapplication.LightBulbDetailView;
 import com.dlvjkb.hueapplication.LightBulbStateManager;
 import com.dlvjkb.hueapplication.R;
-import com.dlvjkb.hueapplication.model.LightBulb;
-import com.dlvjkb.hueapplication.recyclerview.LightBulbAdapter;
-import com.dlvjkb.hueapplication.recyclerview.LightBulbClickListener;
-import com.dlvjkb.hueapplication.recyclerview.LightBulbListListener;
-import com.dlvjkb.hueapplication.recyclerview.LightBulbListManager;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.dlvjkb.hueapplication.recyclerview.groups.GroupAdapter;
+import com.dlvjkb.hueapplication.recyclerview.groups.GroupListManager;
+import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbAdapter;
+import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbClickListener;
+import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbListListener;
+import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbListManager;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class LightsFragment extends Fragment implements LightBulbClickListener {
     private static final String TAG = LightsFragment.class.getName();
 
-    private static RecyclerView horizontalRecyclerView;
-    private LightBulbStateManager stateManager;
-    private LightBulbAdapter adapter;
+    private RecyclerView lightBulbRecyclerView;
+    private RecyclerView groupRecyclerView;
+    private LightBulbAdapter lightBulbAdapter;
+    private GroupAdapter groupAdapter;
 
     @Nullable
     @Override
@@ -50,14 +45,23 @@ public class LightsFragment extends Fragment implements LightBulbClickListener {
 
         LightBulbListManager.getInstance().clearLightBulbs();
 
-        horizontalRecyclerView = view.findViewById(R.id.rvHorizontalBulbs);
-        horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
-                LinearLayoutManager.HORIZONTAL,
+        lightBulbRecyclerView = view.findViewById(R.id.rvLightBulb);
+        lightBulbRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
+                LinearLayoutManager.VERTICAL,
                 false));
 
-        adapter = new LightBulbAdapter(getContext(), LightBulbListManager.getInstance().getLightBulbs(), this);
-        horizontalRecyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        lightBulbAdapter = new LightBulbAdapter(getContext(), LightBulbListManager.getInstance().getLightBulbs(), this);
+        lightBulbRecyclerView.setAdapter(lightBulbAdapter);
+        lightBulbAdapter.notifyDataSetChanged();
+
+        groupRecyclerView = view.findViewById(R.id.rvGroup);
+        groupRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
+                LinearLayoutManager.VERTICAL,
+                false));
+
+        groupAdapter = new GroupAdapter(getContext(), GroupListManager.getInstance().getGroups(), this);
+        groupRecyclerView.setAdapter(groupAdapter);
+        groupAdapter.notifyDataSetChanged();
 
         startLightBulbs();
         return view;
@@ -95,8 +99,10 @@ public class LightsFragment extends Fragment implements LightBulbClickListener {
         LightBulbListManager.getInstance().startLightBulbs(getContext(), new LightBulbListListener() {
             @Override
             public void onLightBulbListChanged() {
-                adapter.notifyDataSetChanged();
+                lightBulbAdapter.notifyDataSetChanged();
             }
         });
     }
+
+
 }

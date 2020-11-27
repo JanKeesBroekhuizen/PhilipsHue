@@ -15,25 +15,23 @@ import com.dlvjkb.hueapplication.model.LightBulbLoadListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+public class HueLightBulbConnection {
+    private static HueLightBulbConnection instance = null;
 
-public class HueEmulatorConnection {
-    private static HueEmulatorConnection instance = null;
-
-    synchronized public static HueEmulatorConnection getInstance(Context context, LightBulbLoadListener listener){
+    synchronized public static HueLightBulbConnection getInstance(Context context, LightBulbLoadListener listener){
         if (instance == null){
-            instance = new HueEmulatorConnection(context, listener);
+            instance = new HueLightBulbConnection(context, listener);
         }
         return instance;
     }
 
-    private final String TAG = HueEmulatorConnection.class.getName();
+    private final String TAG = HueLightBulbConnection.class.getName();
 
     private RequestQueue requestQueue;
     private LightBulbLoadListener listener;
 
 
-    HueEmulatorConnection(Context context, LightBulbLoadListener listener){
+    HueLightBulbConnection(Context context, LightBulbLoadListener listener){
         this.requestQueue = Volley.newRequestQueue(context);
         this.listener = listener;
     }
@@ -65,7 +63,6 @@ public class HueEmulatorConnection {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d(TAG,"Volley error " + error.getLocalizedMessage());
-                        error.printStackTrace();
                     }
                 }
         );

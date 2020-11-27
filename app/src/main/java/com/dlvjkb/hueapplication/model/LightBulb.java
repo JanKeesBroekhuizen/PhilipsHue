@@ -1,8 +1,5 @@
 package com.dlvjkb.hueapplication.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,7 +9,7 @@ public class LightBulb implements Serializable {
     private String modelId;
     public String name;
     private String swVersion;
-    public State state;
+    public LightState state;
     private String type;
     private String uniqueId;
 
@@ -21,7 +18,7 @@ public class LightBulb implements Serializable {
             this.modelId = jsonObject.getString("modelid");
             this.name = jsonObject.getString("name");
             this.swVersion = jsonObject.getString("swversion");
-            this.state = new State(jsonObject.getJSONObject("state"));
+            this.state = new LightState(jsonObject.getJSONObject("state"));
             this.type = jsonObject.getString("type");
             this.uniqueId = jsonObject.getString("uniqueid");
         } catch (JSONException e) {

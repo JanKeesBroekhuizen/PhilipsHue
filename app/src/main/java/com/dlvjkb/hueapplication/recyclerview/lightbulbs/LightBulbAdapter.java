@@ -1,4 +1,4 @@
-package com.dlvjkb.hueapplication.recyclerview;
+package com.dlvjkb.hueapplication.recyclerview.lightbulbs;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -33,10 +33,6 @@ public class LightBulbAdapter extends RecyclerView.Adapter<LightBulbViewHolder>{
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.lightbulb_item_row, parent, false);
         LightBulbViewHolder viewHolder = new LightBulbViewHolder(itemView, listener);
         return viewHolder;
-
-//        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-//        ViewGroup group = (ViewGroup) inflater.inflate(R.layout.lightbulb_item_row,parent,false);
-//        return new LightBulbViewHolder(group);
     }
 
     @Override

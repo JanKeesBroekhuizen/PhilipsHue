@@ -1,4 +1,4 @@
-package com.dlvjkb.hueapplication.recyclerview;
+package com.dlvjkb.hueapplication.recyclerview.lightbulbs;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dlvjkb.hueapplication.R;
+import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbClickListener;
 
 public class LightBulbViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
 
