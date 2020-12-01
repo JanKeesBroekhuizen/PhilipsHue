@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.dlvjkb.hueapplication.fragments.LightsFragment;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulbLoadListener;
 
@@ -29,12 +30,14 @@ public class LightBulbStateManager {
     }
 
     private RequestQueue requestQueue;
-    private int portNumber;
+    private String portNumber;
+    private String ipAddress;
 
 
     LightBulbStateManager(Context context){
         this.requestQueue = Volley.newRequestQueue(context);
-        this.portNumber = 8000;
+        this.portNumber = LightsFragment.portNumber;
+        this.ipAddress = LightsFragment.ipAddress;
     }
     public void setLightBulb(LightBulb lightBulb){
         JSONObject jsonObject = new JSONObject();
@@ -52,7 +55,7 @@ public class LightBulbStateManager {
             e.printStackTrace();
         }
 
-        final String url = "http://192.168.178.91:" + portNumber + "/api/newdeveloper/lights/"+ lightBulb.number + "/state";
+        final String url = "http://" + ipAddress + ":" + portNumber + "/api/newdeveloper/lights/"+ lightBulb.number + "/state";
         JsonObjectRequest putRequest = new JsonObjectRequest(
                 Request.Method.PUT,
                 url,
@@ -74,7 +77,10 @@ public class LightBulbStateManager {
         requestQueue.add(putRequest);
     }
 
-    public void setPortNumber(int portNumber){
+    public void setPortNumber(String portNumber){
         this.portNumber = portNumber;
+    }
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 }

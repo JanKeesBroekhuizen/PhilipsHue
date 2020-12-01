@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.devs.vectorchildfinder.VectorChildFinder;
 import com.dlvjkb.hueapplication.R;
 import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbClickListener;
 

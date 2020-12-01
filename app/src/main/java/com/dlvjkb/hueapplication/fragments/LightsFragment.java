@@ -1,6 +1,7 @@
 package com.dlvjkb.hueapplication.fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.dlvjkb.hueapplication.GroupDetailActivity;
 import com.dlvjkb.hueapplication.HueGroupConnection;
@@ -40,6 +42,10 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
     private RecyclerView groupRecyclerView;
     private LightBulbAdapter lightBulbAdapter;
     private GroupAdapter groupAdapter;
+    private SwipeRefreshLayout refreshLayoutLights;
+    private SwipeRefreshLayout refreshLayoutGroups;
+    public static String ipAddress;
+    public static String  portNumber;
 
     @Nullable
     @Override
@@ -49,9 +55,21 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
         View view = inflater.inflate(R.layout.fragment_lights, container, false);
 
         LightBulbListManager.getInstance().clearLightBulbs();
+        GroupListManager.getInstance().clearGroups();
 
+
+        try {
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("settings",0);
+            ipAddress = sharedPreferences.getString("ipAddress","");
+            portNumber = sharedPreferences.getString("portNumber","");
+            Log.d("IP:", "" + ipAddress);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         //Initialisation methods..
         setGooddayMessage(view);
+        initRefreshViews(view);
         initRecyclerViews(view);
         startLightBulbs();
         startGroups();
@@ -70,7 +88,7 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
 
         groupRecyclerView = view.findViewById(R.id.rvGroup);
         groupRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
-                LinearLayoutManager.VERTICAL,
+                LinearLayoutManager.HORIZONTAL,
                 false));
 
         groupAdapter = new GroupAdapter(getContext(), GroupListManager.getInstance().getGroups(), this);
@@ -144,4 +162,31 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
             }
         }
     }
+
+    public void initRefreshViews(View view){
+        refreshLayoutLights = view.findViewById(R.id.refreshViewLights);
+        refreshLayoutLights.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                startLightBulbs();
+                refreshLayoutLights.setRefreshing(false);
+            }
+        });
+
+        refreshLayoutGroups = view.findViewById(R.id.refreshViewGroups);
+        refreshLayoutGroups.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                startGroups();
+                refreshLayoutGroups.setRefreshing(false);
+            }
+        });
+    }
+
+//    public void refreshLightBulbs(){
+//        startLightBulbs();
+//        startGroups();
+//        addLightsToGroup();
+//    }
+
 }

@@ -44,15 +44,15 @@ public class GroupAction implements Serializable {
         return list;
     }
 
-    public void setSat(int sat) {
+    public void setSat(float sat) {
         this.sat = sat;
     }
 
-    public void setBri(int bri) {
+    public void setBri(float bri) {
         this.bri = bri;
     }
 
-    public void setHue(int hue) {
+    public void setHue(float hue) {
         this.hue = hue;
     }
 }

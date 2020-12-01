@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
+import com.dlvjkb.hueapplication.fragments.LightsFragment;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 import com.flask.colorpicker.ColorPickerView;
 
@@ -20,13 +21,14 @@ import org.json.JSONObject;
 
 public class LightBulbDetailActivity extends AppCompatActivity {
     private int currentColor = 0;
+    private LightBulb lightBulb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detailactivity_lightbulb);
 
-        LightBulb lightBulb = (LightBulb) getIntent().getSerializableExtra("LightBulb");
+        lightBulb = (LightBulb) getIntent().getSerializableExtra("LightBulb");
         //int position = getIntent().getIntExtra("position", 1);
 
         ColorPickerView colorPickerView = findViewById(R.id.color_picker_view);
@@ -61,4 +63,9 @@ public class LightBulbDetailActivity extends AppCompatActivity {
             }
         });
     }
-}
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LightBulbStateManager.getInstance(getApplicationContext()).setLightBulb(lightBulb);
+    }}
