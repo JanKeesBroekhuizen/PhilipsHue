@@ -57,6 +57,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupViewHolder> {
                 GroupActionManager.getInstance(context).setGroup(group);
             }
         });
+        System.out.println("ADAPTER: " + group.toString());
         holder.GroupImage.setImageBitmap(bitmap);
     }
 

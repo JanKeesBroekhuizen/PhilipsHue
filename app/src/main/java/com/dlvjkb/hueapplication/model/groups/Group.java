@@ -1,14 +1,17 @@
 package com.dlvjkb.hueapplication.model.groups;
 
+import androidx.annotation.NonNull;
+
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Group {
+public class Group implements Serializable {
     public int groupNumber;
     public String name;
     public GroupAction action;
@@ -42,4 +45,10 @@ public class Group {
     public void setLightBulbs(ArrayList<LightBulb> lightBulbs){
         this.lightBulbs = lightBulbs;
     }
+
+//    @NonNull
+//    @Override
+//    public String toString() {
+//        return name;
+//    }
 }

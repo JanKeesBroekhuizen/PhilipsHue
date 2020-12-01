@@ -116,6 +116,8 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
     @Override
     public void onGroupClick(int position) {
         Intent intent = new Intent(getContext(), GroupDetailActivity.class);
+        intent.putExtra("Group", GroupListManager.getInstance().getGroup(position));
+        intent.putExtra("groupPosition", position);
         startActivity(intent);
     }
 

@@ -4,9 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GroupAction {
+public class GroupAction implements Serializable {
     private ArrayList<Double> xy;
     private int ct;
     public int sat;
@@ -41,5 +42,17 @@ public class GroupAction {
             }
         }
         return list;
+    }
+
+    public void setSat(int sat) {
+        this.sat = sat;
+    }
+
+    public void setBri(int bri) {
+        this.bri = bri;
+    }
+
+    public void setHue(int hue) {
+        this.hue = hue;
     }
 }
