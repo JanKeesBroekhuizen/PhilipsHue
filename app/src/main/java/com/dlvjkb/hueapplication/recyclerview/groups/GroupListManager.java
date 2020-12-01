@@ -3,12 +3,9 @@ package com.dlvjkb.hueapplication.recyclerview.groups;
 import android.content.Context;
 import android.util.Log;
 
-import com.dlvjkb.hueapplication.HueConnection;
 import com.dlvjkb.hueapplication.HueGroupConnection;
-import com.dlvjkb.hueapplication.LoadListener;
 import com.dlvjkb.hueapplication.model.groups.Group;
 import com.dlvjkb.hueapplication.model.groups.GroupLoadListener;
-import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 
 import java.util.ArrayList;
 

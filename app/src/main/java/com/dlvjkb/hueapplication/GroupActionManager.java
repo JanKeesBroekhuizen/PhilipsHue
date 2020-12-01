@@ -34,7 +34,7 @@ public class GroupActionManager {
 
     GroupActionManager(Context context){
         this.requestQueue = Volley.newRequestQueue(context);
-        this.portNumber = 80;
+        this.portNumber = 8000;
     }
     public void setGroup(Group group){
         JSONObject jsonObject = new JSONObject();
@@ -52,7 +52,7 @@ public class GroupActionManager {
             e.printStackTrace();
         }
 
-        final String url = "http://192.168.178.91:" + portNumber + "/api/newdeveloper/groups/"+ group.groupNumber + "/action";
+        final String url = "http://10.149.1.111:" + portNumber + "/api/newdeveloper/groups/"+ group.groupNumber + "/action";
         JsonObjectRequest putRequest = new JsonObjectRequest(
                 Request.Method.PUT,
                 url,

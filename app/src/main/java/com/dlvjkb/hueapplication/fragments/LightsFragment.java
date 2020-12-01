@@ -31,6 +31,7 @@ import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbListListener;
 import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbListManager;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class LightsFragment extends Fragment implements LightBulbClickListener, GroupClickListener {
     private static final String TAG = LightsFragment.class.getName();

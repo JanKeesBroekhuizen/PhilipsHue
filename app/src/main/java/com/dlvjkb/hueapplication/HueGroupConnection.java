@@ -38,11 +38,11 @@ public class HueGroupConnection {
     HueGroupConnection(Context context, GroupLoadListener listener){
         this.requestQueue = Volley.newRequestQueue(context);
         this.listener = listener;
-        this.portNumber = 80;
+        this.portNumber = 8000;
     }
 
     public void getGroups(){
-        final String url = "http://192.168.178.91:" + portNumber + "/api/newdeveloper/groups";
+        final String url = "http://10.149.1.111:" + portNumber + "/api/newdeveloper/groups";
         final JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
