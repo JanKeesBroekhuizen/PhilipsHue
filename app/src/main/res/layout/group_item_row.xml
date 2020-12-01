@@ -20,7 +20,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tvLightBulbName"
+                android:id="@+id/tvGroupName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -32,28 +32,28 @@
                 card_view:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/ivLightBulb"
+                android:id="@+id/ivGroup"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintEnd_toStartOf="@+id/tvLightBulbName"
+                card_view:layout_constraintEnd_toStartOf="@+id/tvGroupName"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
                 card_view:srcCompat="@drawable/app_logo" />
 
             <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/LightSwitch"
+                android:id="@+id/groupSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="Off/On"
                 card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintEnd_toEndOf="@+id/tvLightBulbName"
-                card_view:layout_constraintStart_toStartOf="@+id/tvLightBulbName"
-                card_view:layout_constraintTop_toBottomOf="@+id/tvLightBulbName"/>
+                card_view:layout_constraintEnd_toEndOf="@+id/tvGroupName"
+                card_view:layout_constraintStart_toStartOf="@+id/tvGroupName"
+                card_view:layout_constraintTop_toBottomOf="@+id/tvGroupName"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

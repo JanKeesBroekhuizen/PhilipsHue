@@ -9,31 +9,40 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.dlvjkb.hueapplication.model.LightBulb;
+import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
+import com.dlvjkb.hueapplication.model.lightbulbs.LightBulbLoadListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class HueEmulatorConnection {
-    private final String TAG = HueEmulatorConnection.class.getName();
+public class HueLightBulbConnection {
+    private static HueLightBulbConnection instance = null;
 
-    private RequestQueue requestQueue;
-    //private LightBulbLoadListener listener;
-    private ArrayList<LightBulb> lightBulbList;
+    synchronized public static HueLightBulbConnection getInstance(Context context, LightBulbLoadListener listener){
 
-
-    HueEmulatorConnection(Context context /*, LightBulbLoadListener listener*/){
-        this.requestQueue = Volley.newRequestQueue(context);
-        //this.listener = listener;
-        lightBulbList = new ArrayList<>();
-
-        initLights();
+        if (instance == null){
+            Log.d("HueLightBulbConnection","getInstance()");
+            instance = new HueLightBulbConnection(context, listener);
+        }
+        return instance;
     }
 
-    public void initLights(){
-        final String url = "http://192.168.178.91/api/newdeveloper/lights";
+    private final String TAG = HueLightBulbConnection.class.getName();
+    private RequestQueue requestQueue;
+    private LightBulbLoadListener listener;
+    private int portNumber;
+
+
+    HueLightBulbConnection(Context context, LightBulbLoadListener listener){
+        this.requestQueue = Volley.newRequestQueue(context);
+        this.listener = listener;
+        this.portNumber = 80;
+    }
+
+    public void getLightBulbs(){
+        final String url = "http://192.168.178.91:" + portNumber + "/api/newdeveloper/lights";
         final JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -47,28 +56,25 @@ public class HueEmulatorConnection {
                             for (int lightNumber = 1; lightNumber < lightAmount + 1; lightNumber++){
 
                                 JSONObject lightObject = response.getJSONObject(lightNumber + "");
-                                LightBulb lightBulb = new LightBulb(lightObject);
-                                lightBulbList.add(lightBulb);
-                                //listener.onLightBulbAvailable(lightBulb);
+                                LightBulb lightBulb = new LightBulb(lightNumber ,lightObject);
+                                listener.onLightBulbAvailable(lightBulb);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d(TAG,"Volley error " + error.getLocalizedMessage());
-                        error.printStackTrace();
                     }
                 }
         );
         requestQueue.add(request);
     }
 
-    public ArrayList<LightBulb> getLightBulbs(){
-        return lightBulbList;
+    public void setPortNumber(int portNumber){
+        this.portNumber = portNumber;
     }
 }

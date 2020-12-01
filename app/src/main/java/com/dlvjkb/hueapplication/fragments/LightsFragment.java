@@ -1,7 +1,9 @@
 package com.dlvjkb.hueapplication.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +15,31 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dlvjkb.hueapplication.GroupDetailActivity;
+import com.dlvjkb.hueapplication.HueGroupConnection;
+import com.dlvjkb.hueapplication.LightBulbDetailActivity;
 import com.dlvjkb.hueapplication.R;
-import com.dlvjkb.hueapplication.model.LightBulb;
-import com.dlvjkb.hueapplication.recyclerview.HorizontalAdapter;
+import com.dlvjkb.hueapplication.model.groups.Group;
+import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
+import com.dlvjkb.hueapplication.recyclerview.groups.GroupAdapter;
+import com.dlvjkb.hueapplication.recyclerview.groups.GroupClickListener;
+import com.dlvjkb.hueapplication.recyclerview.groups.GroupListListener;
+import com.dlvjkb.hueapplication.recyclerview.groups.GroupListManager;
+import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbAdapter;
+import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbClickListener;
+import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbListListener;
+import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbListManager;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class LightsFragment extends Fragment {
+public class LightsFragment extends Fragment implements LightBulbClickListener, GroupClickListener {
+    private static final String TAG = LightsFragment.class.getName();
 
-    private static RecyclerView horizontalRecyclerView;
+    private RecyclerView lightBulbRecyclerView;
+    private RecyclerView groupRecyclerView;
+    private LightBulbAdapter lightBulbAdapter;
+    private GroupAdapter groupAdapter;
 
     @Nullable
     @Override
@@ -30,22 +47,42 @@ public class LightsFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lights, container, false);
+
+        LightBulbListManager.getInstance().clearLightBulbs();
+
+        //Initialisation methods..
         setGooddayMessage(view);
-
-        horizontalRecyclerView = view.findViewById(R.id.rvHorizontalBulbs);
-        horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
-                LinearLayoutManager.HORIZONTAL,
-                false));
-        //testLightBulb();
-
+        initRecyclerViews(view);
+        startLightBulbs();
+        startGroups();
+        addLightsToGroup();
         return view;
+    }
+
+    private void initRecyclerViews(View view){
+        lightBulbRecyclerView = view.findViewById(R.id.rvLightBulb);
+        lightBulbRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
+                LinearLayoutManager.VERTICAL,false));
+
+        lightBulbAdapter = new LightBulbAdapter(getContext(), LightBulbListManager.getInstance().getLightBulbs(), this);
+        lightBulbRecyclerView.setAdapter(lightBulbAdapter);
+        lightBulbAdapter.notifyDataSetChanged();
+
+        groupRecyclerView = view.findViewById(R.id.rvGroup);
+        groupRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
+                LinearLayoutManager.VERTICAL,
+                false));
+
+        groupAdapter = new GroupAdapter(getContext(), GroupListManager.getInstance().getGroups(), this);
+        groupRecyclerView.setAdapter(groupAdapter);
+        groupAdapter.notifyDataSetChanged();
     }
 
     private void setGooddayMessage(View view){
         TextView messageView = view.findViewById(R.id.tvGoodday);
         LocalTime morning = LocalTime.parse("00:00");
         LocalTime afternoon = LocalTime.parse("12:00");
-        LocalTime evening = LocalTime.parse("19:00");
+        LocalTime evening = LocalTime.parse("18:00");
         LocalTime localTime = LocalTime.now();
         if (localTime.isAfter(evening) && localTime.isAfter(afternoon) && localTime.isAfter(morning)){
             messageView.setText(messageView.getText(), TextView.BufferType.EDITABLE);
@@ -59,19 +96,50 @@ public class LightsFragment extends Fragment {
         }
     }
 
-//    private void testLightBulb(){
-//        boolean state;
-//        ArrayList<LightBulb> bulbs = new ArrayList<>();
-//        for (int i = 0 ; i < 10 ; i++){
-//            if (i%2==0){
-//                state = true;
-//            }else {
-//                state = false;
-//            }
-//            bulbs.add(new LightBulb(i,"Hello",state));
-//        }
-//        HorizontalAdapter adapter = new HorizontalAdapter(getContext(), bulbs);
-//        horizontalRecyclerView.setAdapter(adapter);
-//        adapter.notifyDataSetChanged();
-//    }
+    @Override
+    public void onLightBulbClick(int position) {
+        Intent intent = new Intent(getContext(), LightBulbDetailActivity.class);
+        intent.putExtra("LightBulb", LightBulbListManager.getInstance().getLightBulb(position));
+        intent.putExtra("position", position);
+        startActivity(intent);
+    }
+
+    public void startLightBulbs(){
+        LightBulbListManager.getInstance().startLightBulbs(getContext(), new LightBulbListListener() {
+            @Override
+            public void onLightBulbListChanged() {
+                lightBulbAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    @Override
+    public void onGroupClick(int position) {
+        Intent intent = new Intent(getContext(), GroupDetailActivity.class);
+        startActivity(intent);
+    }
+
+    public void startGroups(){
+        GroupListManager.getInstance().startGroups(getContext(), new GroupListListener() {
+            @Override
+            public void onGroupListChanged() {
+                groupAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    public void addLightsToGroup(){
+        ArrayList<Group> groups = GroupListManager.getInstance().getGroups();
+        ArrayList<LightBulb> lightBulbs = LightBulbListManager.getInstance().getLightBulbs();
+
+        for (int groupIndex = 0; groupIndex < groups.size(); groupIndex++){
+            for (int i = 0; i < groups.get(i).lightsNumbers.size(); i++){
+                for (int lightBulbIndex = 0; lightBulbIndex < lightBulbs.size(); lightBulbIndex++){
+                    if (groups.get(i).lightsNumbers.get(i) == lightBulbs.get(lightBulbIndex).number){
+                        groups.get(groupIndex).lightBulbs.add(lightBulbs.get(lightBulbIndex));
+                    }
+                }
+            }
+        }
+    }
 }

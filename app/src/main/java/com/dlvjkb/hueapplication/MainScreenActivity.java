@@ -9,14 +9,18 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+
 import java.util.ArrayList;
 import com.dlvjkb.hueapplication.fragments.*;
+import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
 public class MainScreenActivity extends AppCompatActivity {
 
+    private HueLightBulbConnection hueEmulatorConnection;
+    public static ArrayList<LightBulb> lightBulbs;
     private final String TAG = MainScreenActivity.class.getSimpleName();
     private final List<Fragment> accessibleFragments = new ArrayList<>();
     private Fragment currentFragment = null;
@@ -50,6 +54,7 @@ public class MainScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         setupFragmentList();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -61,11 +66,6 @@ public class MainScreenActivity extends AppCompatActivity {
         BottomNavigationView navigationView = findViewById(R.id.bottomNavigationView);
         navigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
-//        HueEmulatorConnection connection = new HueEmulatorConnection(getApplicationContext());
-//        ArrayList<LightBulb> lightBulbs = connection.getLightBulbs();
-//        for (int i = 0; i < lightBulbs.size(); i++){
-//            lightBulbs.get(i).toString();
-//        }
     }
 
     private void setupFragmentList(){
