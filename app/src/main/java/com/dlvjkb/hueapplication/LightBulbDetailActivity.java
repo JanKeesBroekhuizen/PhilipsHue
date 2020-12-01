@@ -47,9 +47,9 @@ public class LightBulbDetailActivity extends AppCompatActivity {
                 float[] hsv = new float[3];
                 Color.colorToHSV(colorPickerView.getSelectedColor(), hsv);
 
-                lightBulb.state.hue = (int) hsv[0] * 182;
-                lightBulb.state.sat = (int) hsv[1] * 254;
-                lightBulb.state.bri = (int) hsv[2] * 254;
+                lightBulb.state.hue = hsv[0] * 182;
+                lightBulb.state.sat = hsv[1] * 254;
+                lightBulb.state.bri = hsv[2] * 254;
                 LightBulbStateManager.getInstance(getApplicationContext()).setLightBulb(lightBulb);
             }
         });

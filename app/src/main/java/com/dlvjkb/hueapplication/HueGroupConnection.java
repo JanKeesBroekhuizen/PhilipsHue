@@ -45,7 +45,7 @@ public class HueGroupConnection {
     }
 
     public void getGroups(){
-        final String url = "http://"+ ipAddress +":" + portNumber + "/api/newdeveloper/groups";
+        final String url = "http://"+ LightsFragment.ipAddress +":" + LightsFragment.portNumber + "/api/newdeveloper/groups";
         final JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,

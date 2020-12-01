@@ -1,7 +1,9 @@
 package com.dlvjkb.hueapplication.fragments;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import com.dlvjkb.hueapplication.HueLightBulbConnection;
 import com.dlvjkb.hueapplication.LightBulbStateManager;
 import com.dlvjkb.hueapplication.MainScreenActivity;
 import com.dlvjkb.hueapplication.R;
+import com.dlvjkb.hueapplication.SplashScreenActivity;
 
 public class SettingsFragment extends Fragment {
 
@@ -57,7 +60,9 @@ public class SettingsFragment extends Fragment {
         LightsFragment.portNumber = etPortNumber.getText().toString();
         Toast.makeText(getContext(),"PLEASE RESTART",Toast.LENGTH_LONG).show();
 
-
+        Intent intent = new Intent(getContext(), SplashScreenActivity.class);
+        getActivity().finish();
+        startActivity(intent);
     }
 
     public void loadSharedPreferences(){

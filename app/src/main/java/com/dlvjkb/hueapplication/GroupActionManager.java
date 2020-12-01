@@ -55,7 +55,7 @@ public class GroupActionManager {
             e.printStackTrace();
         }
 
-        final String url = "http://" + ipAddress + ":" + portNumber + "/api/newdeveloper/groups/"+ group.groupNumber + "/action";
+        final String url = "http://" + LightsFragment.ipAddress + ":" + LightsFragment.portNumber + "/api/newdeveloper/groups/"+ group.groupNumber + "/action";
         JsonObjectRequest putRequest = new JsonObjectRequest(
                 Request.Method.PUT,
                 url,
