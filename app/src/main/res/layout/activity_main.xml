@@ -28,7 +28,6 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/rounded"
         android:clickable="false"
-        app:itemBackground="@color/broken_white"
         app:itemHorizontalTranslationEnabled="true"
         app:itemIconTint="@color/broken_black"
         app:itemTextColor="@color/broken_black"

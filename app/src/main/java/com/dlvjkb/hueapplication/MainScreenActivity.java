@@ -71,7 +71,7 @@ public class MainScreenActivity extends AppCompatActivity {
     private void setupFragmentList(){
         Log.d(TAG,"Creating fragment list...");
         this.accessibleFragments.add(new LightsFragment());
-        this.accessibleFragments.add(new AddFragment());
+        this.accessibleFragments.add(new ThemeFragment());
         this.accessibleFragments.add(new SettingsFragment());
         Log.d(TAG,"Fragment List Created...");
     }

@@ -8,7 +8,7 @@
     tools:context=".MainScreenActivity">
 
     <TextView
-        android:id="@+id/tvGoodday"
+        android:id="@+id/tvLightsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -53,7 +53,7 @@
         android:textSize="28sp"
         android:fontFamily="@font/lato_black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvGoodday" />
+        app:layout_constraintTop_toBottomOf="@+id/tvLightsTitle" />
 
     <TextView
         android:id="@+id/textView2"

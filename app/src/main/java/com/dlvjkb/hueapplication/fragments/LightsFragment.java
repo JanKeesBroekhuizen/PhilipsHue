@@ -31,7 +31,6 @@ import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbListListener;
 import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbListManager;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class LightsFragment extends Fragment implements LightBulbClickListener, GroupClickListener {
     private static final String TAG = LightsFragment.class.getName();
@@ -79,7 +78,7 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
     }
 
     private void setGooddayMessage(View view){
-        TextView messageView = view.findViewById(R.id.tvGoodday);
+        TextView messageView = view.findViewById(R.id.tvLightsTitle);
         LocalTime morning = LocalTime.parse("00:00");
         LocalTime afternoon = LocalTime.parse("12:00");
         LocalTime evening = LocalTime.parse("18:00");
