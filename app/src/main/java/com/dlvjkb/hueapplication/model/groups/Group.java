@@ -46,9 +46,9 @@ public class Group implements Serializable {
         this.lightBulbs = lightBulbs;
     }
 
-//    @NonNull
-//    @Override
-//    public String toString() {
-//        return name;
-//    }
+    @NonNull
+    @Override
+    public String toString() {
+        return name;
+    }
 }

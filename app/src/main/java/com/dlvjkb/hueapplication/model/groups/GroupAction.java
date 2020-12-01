@@ -10,10 +10,10 @@ import java.util.ArrayList;
 public class GroupAction implements Serializable {
     private ArrayList<Double> xy;
     private int ct;
-    public int sat;
+    public float sat;
     private  String effect;
-    public int bri;
-    public int hue;
+    public float bri;
+    public float hue;
     private String colorMode;
     public boolean on;
 
@@ -44,15 +44,15 @@ public class GroupAction implements Serializable {
         return list;
     }
 
-    public void setSat(int sat) {
+    public void setSat(float sat) {
         this.sat = sat;
     }
 
-    public void setBri(int bri) {
+    public void setBri(float bri) {
         this.bri = bri;
     }
 
-    public void setHue(int hue) {
+    public void setHue(float hue) {
         this.hue = hue;
     }
 }

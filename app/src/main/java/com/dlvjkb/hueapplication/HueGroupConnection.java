@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.dlvjkb.hueapplication.fragments.LightsFragment;
 import com.dlvjkb.hueapplication.model.groups.Group;
 import com.dlvjkb.hueapplication.model.groups.GroupLoadListener;
 
@@ -33,16 +34,18 @@ public class HueGroupConnection {
 
     private RequestQueue requestQueue;
     private GroupLoadListener listener;
-    private int portNumber;
+    private String portNumber;
+    private String ipAddress;
 
     HueGroupConnection(Context context, GroupLoadListener listener){
         this.requestQueue = Volley.newRequestQueue(context);
         this.listener = listener;
-        this.portNumber = 8000;
+        this.portNumber = LightsFragment.portNumber;
+        this.ipAddress = LightsFragment.ipAddress;
     }
 
     public void getGroups(){
-        final String url = "http://10.149.1.111:" + portNumber + "/api/newdeveloper/groups";
+        final String url = "http://"+ ipAddress +":" + portNumber + "/api/newdeveloper/groups";
         final JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -74,7 +77,11 @@ public class HueGroupConnection {
         requestQueue.add(request);
     }
 
-    public void setPortNumber(int portNumber){
+    public void setPortNumber(String  portNumber){
         this.portNumber = portNumber;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 }

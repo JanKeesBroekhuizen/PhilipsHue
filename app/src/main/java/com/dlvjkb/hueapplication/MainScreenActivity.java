@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -19,8 +20,6 @@ import java.util.List;
 
 public class MainScreenActivity extends AppCompatActivity {
 
-    private HueLightBulbConnection hueEmulatorConnection;
-    public static ArrayList<LightBulb> lightBulbs;
     private final String TAG = MainScreenActivity.class.getSimpleName();
     private final List<Fragment> accessibleFragments = new ArrayList<>();
     private Fragment currentFragment = null;
