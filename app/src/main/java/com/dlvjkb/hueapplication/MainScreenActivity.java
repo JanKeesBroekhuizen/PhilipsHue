@@ -12,7 +12,7 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 import com.dlvjkb.hueapplication.fragments.*;
-import com.dlvjkb.hueapplication.model.LightBulb;
+import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;

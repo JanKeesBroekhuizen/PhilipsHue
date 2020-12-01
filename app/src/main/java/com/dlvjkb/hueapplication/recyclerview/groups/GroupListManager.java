@@ -1,10 +1,14 @@
 package com.dlvjkb.hueapplication.recyclerview.groups;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.dlvjkb.hueapplication.HueConnection;
 import com.dlvjkb.hueapplication.HueGroupConnection;
-import com.dlvjkb.hueapplication.model.Group;
-import com.dlvjkb.hueapplication.model.GroupLoadListener;
+import com.dlvjkb.hueapplication.LoadListener;
+import com.dlvjkb.hueapplication.model.groups.Group;
+import com.dlvjkb.hueapplication.model.groups.GroupLoadListener;
+import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 
 import java.util.ArrayList;
 
@@ -42,13 +46,13 @@ public class GroupListManager implements GroupLoadListener {
         this.listener = listener;
         groups.clear();
         this.listener.onGroupListChanged();
-        HueGroupConnection connection = HueGroupConnection.getInstance(context, this);
-        connection.initGroups();
+        HueGroupConnection.getInstance(context, this).getGroups();
     }
 
     @Override
     public void onGroupAvailable(Group group) {
         groups.add(group);
         this.listener.onGroupListChanged();
+        Log.d(TAG, "Size of list: " + groups.size());
     }
 }

@@ -12,13 +12,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dlvjkb.hueapplication.GroupDetailActivity;
+import com.dlvjkb.hueapplication.HueGroupConnection;
 import com.dlvjkb.hueapplication.LightBulbDetailActivity;
 import com.dlvjkb.hueapplication.R;
+import com.dlvjkb.hueapplication.model.groups.Group;
+import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 import com.dlvjkb.hueapplication.recyclerview.groups.GroupAdapter;
 import com.dlvjkb.hueapplication.recyclerview.groups.GroupClickListener;
 import com.dlvjkb.hueapplication.recyclerview.groups.GroupListListener;
@@ -29,6 +31,7 @@ import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbListListener;
 import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbListManager;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class LightsFragment extends Fragment implements LightBulbClickListener, GroupClickListener {
     private static final String TAG = LightsFragment.class.getName();
@@ -52,6 +55,7 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
         initRecyclerViews(view);
         startLightBulbs();
         startGroups();
+        addLightsToGroup();
         return view;
     }
 
@@ -94,8 +98,6 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
 
     @Override
     public void onLightBulbClick(int position) {
-        Log.d(TAG, "Clicked on fragment " + position);
-        //Toast.makeText(getContext(), "Clicked on fragment " + position, Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getContext(), LightBulbDetailActivity.class);
         intent.putExtra("LightBulb", LightBulbListManager.getInstance().getLightBulb(position));
         intent.putExtra("position", position);
@@ -111,10 +113,8 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
         });
     }
 
-
     @Override
     public void onGroupClick(int position) {
-        Log.d(TAG,"Clicked on grouprecyclerview: " + position);
         Intent intent = new Intent(getContext(), GroupDetailActivity.class);
         startActivity(intent);
     }
@@ -126,5 +126,20 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
                 groupAdapter.notifyDataSetChanged();
             }
         });
+    }
+
+    public void addLightsToGroup(){
+        ArrayList<Group> groups = GroupListManager.getInstance().getGroups();
+        ArrayList<LightBulb> lightBulbs = LightBulbListManager.getInstance().getLightBulbs();
+
+        for (int groupIndex = 0; groupIndex < groups.size(); groupIndex++){
+            for (int i = 0; i < groups.get(i).lightsNumbers.size(); i++){
+                for (int lightBulbIndex = 0; lightBulbIndex < lightBulbs.size(); lightBulbIndex++){
+                    if (groups.get(i).lightsNumbers.get(i) == lightBulbs.get(lightBulbIndex).number){
+                        groups.get(groupIndex).lightBulbs.add(lightBulbs.get(lightBulbIndex));
+                    }
+                }
+            }
+        }
     }
 }

@@ -9,33 +9,32 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.dlvjkb.hueapplication.model.groups.Group;
+import com.dlvjkb.hueapplication.model.groups.GroupLoadListener;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
-import com.dlvjkb.hueapplication.model.lightbulbs.LightBulbLoadListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+public class HueConnection {
+    private static HueConnection instance = null;
 
-public class HueLightBulbConnection {
-    private static HueLightBulbConnection instance = null;
-
-    synchronized public static HueLightBulbConnection getInstance(Context context, LightBulbLoadListener listener){
+    /*synchronized public static HueConnection getInstance(Context context, LoadListener listener){
 
         if (instance == null){
-            Log.d("HueLightBulbConnection","getInstance()");
-            instance = new HueLightBulbConnection(context, listener);
+            Log.d("HueGroupConnection","getInstance()");
+            instance = new HueConnection(context, listener);
         }
         return instance;
-    }
+    }*/
 
-    private final String TAG = HueLightBulbConnection.class.getName();
+    private final String TAG = HueConnection.class.getName();
+
     private RequestQueue requestQueue;
-    private LightBulbLoadListener listener;
+    private LoadListener listener;
     private int portNumber;
 
-
-    HueLightBulbConnection(Context context, LightBulbLoadListener listener){
+    HueConnection(Context context, LoadListener listener){
         this.requestQueue = Volley.newRequestQueue(context);
         this.listener = listener;
         this.portNumber = 80;
@@ -67,7 +66,40 @@ public class HueLightBulbConnection {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG,"Volley error " + error.getLocalizedMessage());
+                        Log.d(TAG,"Lightbulb Volley error " + error.getLocalizedMessage());
+                    }
+                }
+        );
+        requestQueue.add(request);
+    }
+
+    public void getGroups(){
+        final String url = "http://192.168.178.91:" + portNumber + "/api/newdeveloper/groups";
+        final JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+                            int groupAmount = response.length();
+                            Log.d(TAG, "Got " + groupAmount + " groups!");
+                            for (int groupNumber = 1; groupNumber < groupAmount + 1; groupNumber++) {
+                                JSONObject groupObject = response.getJSONObject(groupNumber + "");
+                                Group group = new Group(groupNumber, groupObject);
+                                listener.onGroupAvailable(group);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG,"Group Volley error " + error.getLocalizedMessage());
                     }
                 }
         );

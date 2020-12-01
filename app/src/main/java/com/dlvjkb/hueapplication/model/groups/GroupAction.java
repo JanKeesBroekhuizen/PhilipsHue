@@ -1,4 +1,4 @@
-package com.dlvjkb.hueapplication.model;
+package com.dlvjkb.hueapplication.model.groups;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -9,12 +9,12 @@ import java.util.ArrayList;
 public class GroupAction {
     private ArrayList<Double> xy;
     private int ct;
-    private int sat;
+    public int sat;
     private  String effect;
-    private int bri;
-    private int hue;
+    public int bri;
+    public int hue;
     private String colorMode;
-    private boolean on;
+    public boolean on;
 
     public GroupAction (JSONObject jsonObject){
         try {

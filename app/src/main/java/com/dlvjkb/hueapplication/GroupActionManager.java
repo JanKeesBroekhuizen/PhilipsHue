@@ -9,21 +9,21 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.dlvjkb.hueapplication.model.groups.Group;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
-import com.dlvjkb.hueapplication.model.lightbulbs.LightBulbLoadListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class LightBulbStateManager {
-    private static LightBulbStateManager instance = null;
-    private final String TAG = LightBulbStateManager.class.getName();
+public class GroupActionManager {
+    private static GroupActionManager instance = null;
+    private final String TAG = GroupActionManager.class.getName();
 
-    synchronized public static LightBulbStateManager getInstance(Context context){
+    synchronized public static GroupActionManager getInstance(Context context){
 
         if (instance == null){
             Log.d("HueLightBulbConnection","getInstance()");
-            instance = new LightBulbStateManager(context);
+            instance = new GroupActionManager(context);
         }
         return instance;
     }
@@ -32,27 +32,27 @@ public class LightBulbStateManager {
     private int portNumber;
 
 
-    LightBulbStateManager(Context context){
+    GroupActionManager(Context context){
         this.requestQueue = Volley.newRequestQueue(context);
         this.portNumber = 80;
     }
-    public void setLightBulb(LightBulb lightBulb){
+    public void setGroup(Group group){
         JSONObject jsonObject = new JSONObject();
 
         try{
-            if (!lightBulb.state.on){
+            if (!group.action.on){
                 jsonObject.put("on", false);
             } else {
-                jsonObject.put("on", lightBulb.state.on);
-                jsonObject.put("hue", lightBulb.state.hue);
-                jsonObject.put("bri", lightBulb.state.bri);
-                jsonObject.put("sat", lightBulb.state.sat);
+                jsonObject.put("on", true);
+                jsonObject.put("hue", group.action.hue);
+                jsonObject.put("bri", group.action.bri);
+                jsonObject.put("sat", group.action.sat);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        final String url = "http://192.168.178.91:" + portNumber + "/api/newdeveloper/lights/"+ lightBulb.number + "/state";
+        final String url = "http://192.168.178.91:" + portNumber + "/api/newdeveloper/groups/"+ group.groupNumber + "/action";
         JsonObjectRequest putRequest = new JsonObjectRequest(
                 Request.Method.PUT,
                 url,

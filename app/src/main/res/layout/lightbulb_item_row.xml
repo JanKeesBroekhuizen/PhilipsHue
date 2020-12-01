@@ -1,4 +1,5 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
@@ -42,17 +43,17 @@
                 card_view:layout_constraintTop_toTopOf="parent"
                 card_view:srcCompat="@drawable/app_logo" />
 
-            <Switch
-                android:id="@+id/switch1"
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/LightSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="Switch"
+                android:text="Off/On"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="@+id/tvLightBulbName"
                 card_view:layout_constraintStart_toStartOf="@+id/tvLightBulbName"
-                card_view:layout_constraintTop_toBottomOf="@+id/tvLightBulbName" />
+                card_view:layout_constraintTop_toBottomOf="@+id/tvLightBulbName"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

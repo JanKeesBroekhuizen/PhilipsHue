@@ -1,4 +1,4 @@
-package com.dlvjkb.hueapplication.model;
+package com.dlvjkb.hueapplication.model.lightbulbs;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -8,19 +8,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LightState implements Serializable {
+public class LightBulbState implements Serializable {
     private ArrayList<Double> xy;
     private int ct;
     private String alert;
-    private int sat;
+    public int sat;
     private String effect;
-    private int bri;
-    private int hue;
+    public int bri;
+    public int hue;
     private String colorMode;
     private boolean reachable;
     public boolean on;
 
-    public LightState(JSONObject jsonObject) {
+    public LightBulbState(JSONObject jsonObject) {
 
         try {
             this.xy = jsonArrayToList(jsonObject.getJSONArray("xy"));

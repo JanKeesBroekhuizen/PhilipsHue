@@ -1,4 +1,6 @@
-package com.dlvjkb.hueapplication.model;
+package com.dlvjkb.hueapplication.model.groups;
+
+import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -7,15 +9,19 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class Group {
+    public int groupNumber;
     public String name;
-    private GroupAction action;
-    private ArrayList<Integer> lights;
+    public GroupAction action;
+    public ArrayList<Integer> lightsNumbers;
+    public ArrayList<LightBulb> lightBulbs;
 
-    public Group(JSONObject jsonObject){
+    public Group(int groupNumber, JSONObject jsonObject){
         try {
+            this.groupNumber = groupNumber;
             this.name = jsonObject.getString("name");
             this.action = new GroupAction(jsonObject.getJSONObject("action"));
-            this.lights = jsonArrayToList(jsonObject.getJSONArray("lights"));
+            this.lightsNumbers = jsonArrayToList(jsonObject.getJSONArray("lights"));
+            this.lightBulbs = new ArrayList<>();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -31,5 +37,9 @@ public class Group {
             }
         }
         return list;
+    }
+
+    public void setLightBulbs(ArrayList<LightBulb> lightBulbs){
+        this.lightBulbs = lightBulbs;
     }
 }

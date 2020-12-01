@@ -1,10 +1,14 @@
 package com.dlvjkb.hueapplication.recyclerview.lightbulbs;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.dlvjkb.hueapplication.HueConnection;
 import com.dlvjkb.hueapplication.HueLightBulbConnection;
-import com.dlvjkb.hueapplication.model.LightBulb;
-import com.dlvjkb.hueapplication.model.LightBulbLoadListener;
+import com.dlvjkb.hueapplication.LoadListener;
+import com.dlvjkb.hueapplication.model.groups.Group;
+import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
+import com.dlvjkb.hueapplication.model.lightbulbs.LightBulbLoadListener;
 
 import java.util.ArrayList;
 
@@ -42,13 +46,14 @@ public class LightBulbListManager implements LightBulbLoadListener {
         this.listener = listener;
         lightBulbs.clear();
         this.listener.onLightBulbListChanged();
-        HueLightBulbConnection connection = HueLightBulbConnection.getInstance(context, this);
-        connection.initLightBulbs();
+        //HueLightBulbConnection connection = HueLightBulbConnection.getInstance(context, this);
+        HueLightBulbConnection.getInstance(context, this).getLightBulbs();
     }
 
     @Override
     public void onLightBulbAvailable(LightBulb lightBulb) {
         lightBulbs.add(lightBulb);
         this.listener.onLightBulbListChanged();
+        Log.d("LightBulbListManager", "ListAmount: " + lightBulbs.size());
     }
 }

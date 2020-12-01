@@ -8,6 +8,6 @@ public class GroupDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detailactivity_lightbulb);
+        setContentView(R.layout.detailactivity_group);
     }
 }

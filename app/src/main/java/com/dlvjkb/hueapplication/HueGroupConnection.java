@@ -9,18 +9,21 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.dlvjkb.hueapplication.model.Group;
-import com.dlvjkb.hueapplication.model.GroupLoadListener;
-import com.dlvjkb.hueapplication.model.LightBulbLoadListener;
+import com.dlvjkb.hueapplication.model.groups.Group;
+import com.dlvjkb.hueapplication.model.groups.GroupLoadListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class HueGroupConnection {
     private static HueGroupConnection instance = null;
 
     synchronized public static HueGroupConnection getInstance(Context context, GroupLoadListener listener){
+
         if (instance == null){
+            Log.d("HueGroupConnection","getInstance()");
             instance = new HueGroupConnection(context, listener);
         }
         return instance;
@@ -30,14 +33,16 @@ public class HueGroupConnection {
 
     private RequestQueue requestQueue;
     private GroupLoadListener listener;
+    private int portNumber;
 
     HueGroupConnection(Context context, GroupLoadListener listener){
         this.requestQueue = Volley.newRequestQueue(context);
         this.listener = listener;
+        this.portNumber = 80;
     }
 
-    public void initGroups(){
-        final String url = "http://192.168.178.91:80/api/newdeveloper/groups";
+    public void getGroups(){
+        final String url = "http://192.168.178.91:" + portNumber + "/api/newdeveloper/groups";
         final JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -48,9 +53,9 @@ public class HueGroupConnection {
                         try{
                             int groupAmount = response.length();
                             Log.d(TAG, "Got " + groupAmount + " groups!");
-                            for (int groupNumber = 0; groupNumber < groupAmount; groupNumber++) {
+                            for (int groupNumber = 1; groupNumber < groupAmount + 1; groupNumber++) {
                                 JSONObject groupObject = response.getJSONObject(groupNumber + "");
-                                Group group = new Group(groupObject);
+                                Group group = new Group(groupNumber, groupObject);
                                 listener.onGroupAvailable(group);
                             }
                         } catch (JSONException e) {
@@ -67,5 +72,9 @@ public class HueGroupConnection {
                 }
         );
         requestQueue.add(request);
+    }
+
+    public void setPortNumber(int portNumber){
+        this.portNumber = portNumber;
     }
 }
