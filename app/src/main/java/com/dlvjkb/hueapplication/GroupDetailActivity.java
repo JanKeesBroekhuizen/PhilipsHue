@@ -49,20 +49,24 @@ public class GroupDetailActivity extends AppCompatActivity {
         //Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
         float[] hsvColor = new float[3];
         Color.colorToHSV(hexvalue, hsvColor);
+        float hue = hsvColor[0];
+        float sat = hsvColor[1];
+        float bri = hsvColor[2];
 
-        System.out.println("ONE: " + hsvColor[0]);
-        System.out.println("TWO: " + hsvColor[1]);
-        System.out.println("THREE: " + hsvColor[2]);
+        System.out.println("ONE: " + hue);
+        System.out.println("TWO: " + sat);
+        System.out.println("THREE: " + bri);
         //group.action.on = true;
 //        group.action.hue = (int) hsv[0] * 182;
 //        group.action.sat = (int) hsv[1] * 254;
 //        group.action.bri = (int) hsv[2] * 254;
 
-        int brightness = (int)hsvColor[2] * 254;
+        float brightness = bri * 254;
+        System.out.println("BRIGHTNESS: "  + brightness);
 
-        group.action.setHue((int)hsvColor[0] * 182);
-        group.action.setSat((int)hsvColor[1] * 254);
-        group.action.setBri((int)hsvColor[2] * 254);
+        group.action.hue = (hue * 182);
+        group.action.sat = (sat * 254);
+        group.action.bri = (bri * 254);
 
         System.out.println("HUE: " + group.action.hue);
         System.out.println("SAT: " + group.action.sat);

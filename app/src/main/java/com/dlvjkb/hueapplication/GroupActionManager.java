@@ -52,7 +52,7 @@ public class GroupActionManager {
             e.printStackTrace();
         }
 
-        final String url = "http://10.149.1.111:" + portNumber + "/api/newdeveloper/groups/"+ group.groupNumber + "/action";
+        final String url = "http://192.168.178.91:" + portNumber + "/api/newdeveloper/groups/"+ group.groupNumber + "/action";
         JsonObjectRequest putRequest = new JsonObjectRequest(
                 Request.Method.PUT,
                 url,

@@ -52,7 +52,7 @@ public class LightBulbStateManager {
             e.printStackTrace();
         }
 
-        final String url = "http://10.149.1.111:" + portNumber + "/api/newdeveloper/lights/"+ lightBulb.number + "/state";
+        final String url = "http://192.168.178.91:" + portNumber + "/api/newdeveloper/lights/"+ lightBulb.number + "/state";
         JsonObjectRequest putRequest = new JsonObjectRequest(
                 Request.Method.PUT,
                 url,
