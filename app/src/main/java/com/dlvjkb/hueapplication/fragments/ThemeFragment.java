@@ -56,9 +56,6 @@ public class ThemeFragment extends Fragment {
         Color.colorToHSV(hexvalue, hsvColor);
         Group group = (Group) spinner.getSelectedItem();
         group.action.on = true;
-//        group.action.hue = (int) hsv[0] * 182;
-//        group.action.sat = (int) hsv[1] * 254;
-//        group.action.bri = (int) hsv[2] * 254;
 
         group.action.setHue(hsvColor[0] * 182);
         group.action.setSat(hsvColor[1] * 254);

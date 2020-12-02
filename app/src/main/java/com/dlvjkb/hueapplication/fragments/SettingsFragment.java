@@ -58,7 +58,7 @@ public class SettingsFragment extends Fragment {
 
         LightsFragment.ipAddress = etIpAddress.getText().toString();
         LightsFragment.portNumber = etPortNumber.getText().toString();
-        Toast.makeText(getContext(),"PLEASE RESTART",Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), R.string.String_Restart, Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(getContext(), SplashScreenActivity.class);
         getActivity().finish();

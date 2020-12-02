@@ -33,7 +33,7 @@ public class MainScreenActivity extends AppCompatActivity {
                     Log.d(TAG,"Fragment changed to " + change);
                     currentFragment = change;
                     break;
-                case R.id.menu_add:
+                case R.id.menu_themes:
                     change = accessibleFragments.get(1);
                     Log.d(TAG,"Fragment changed to " + change);
                     currentFragment = change;

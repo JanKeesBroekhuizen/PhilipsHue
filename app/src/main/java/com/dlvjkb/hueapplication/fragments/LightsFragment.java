@@ -103,14 +103,12 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
         LocalTime evening = LocalTime.parse("18:00");
         LocalTime localTime = LocalTime.now();
         if (localTime.isAfter(evening) && localTime.isAfter(afternoon) && localTime.isAfter(morning)){
-            messageView.setText(messageView.getText(), TextView.BufferType.EDITABLE);
-            ((Editable) messageView.getText()).insert(messageView.length(), "evening.");
+            messageView.setText(R.string.String_GoodEvening);
         }else if (localTime.isAfter(afternoon) && localTime.isAfter(morning) && localTime.isBefore(evening)){
             messageView.setText(messageView.getText(), TextView.BufferType.EDITABLE);
-            ((Editable) messageView.getText()).insert(messageView.length(), "afternoon.");
+            messageView.setText(R.string.String_GoodAfternoon);
         }else if (localTime.isAfter(morning) && localTime.isBefore(afternoon) && localTime.isBefore(evening)){
-            messageView.setText(messageView.getText(), TextView.BufferType.EDITABLE);
-            ((Editable) messageView.getText()).insert(messageView.length(), "morning.");
+            messageView.setText(R.string.String_GoodMorning);
         }
     }
 
@@ -133,10 +131,7 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
 
     @Override
     public void onGroupClick(int position) {
-        Intent intent = new Intent(getContext(), GroupDetailActivity.class);
-        intent.putExtra("Group", GroupListManager.getInstance().getGroup(position));
-        intent.putExtra("groupPosition", position);
-        startActivity(intent);
+        Log.d(TAG, "Clicked on Group " + position);
     }
 
     public void startGroups(){

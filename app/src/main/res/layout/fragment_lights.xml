@@ -13,7 +13,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/lato_black"
-        android:text="Hello, good "
+        android:text="@string/String_GoodAfternoon"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/lato_black"
-        android:text="Lights"
+        android:text="@string/String_Lights"
         android:textSize="28sp"
         app:layout_constraintStart_toStartOf="@+id/tvLightsTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvLightsTitle" />
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/lato_black"
-        android:text="Groups"
+        android:text="@string/String_Groups"
         android:textSize="28sp"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/refreshViewLights" />

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +36,8 @@ public class LightBulbDetailActivity extends AppCompatActivity {
         Button button = findViewById(R.id.button);
         SwitchCompat lightSwitch = findViewById(R.id.LightSwitch);
         lightSwitch.setChecked(lightBulb.state.on);
+        TextView textView = findViewById(R.id.tvLightBulbNameDetail);
+        textView.setText(lightBulb.name);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
