@@ -1,9 +1,9 @@
-package com.dlvjkb.hueapplication.recyclerview.lightbulbs;
+package com.dlvjkb.hueapplication.ViewModel.recyclerview.lightbulbs;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.dlvjkb.hueapplication.HueLightBulbConnection;
+import com.dlvjkb.hueapplication.model.lightbulbs.HueLightBulbConnection;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulbLoadListener;
 

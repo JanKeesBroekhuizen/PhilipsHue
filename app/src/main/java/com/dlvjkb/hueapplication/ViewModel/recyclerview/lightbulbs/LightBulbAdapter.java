@@ -1,8 +1,6 @@
-package com.dlvjkb.hueapplication.recyclerview.lightbulbs;
+package com.dlvjkb.hueapplication.ViewModel.recyclerview.lightbulbs;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.devs.vectorchildfinder.VectorChildFinder;
 import com.devs.vectorchildfinder.VectorDrawableCompat;
-import com.dlvjkb.hueapplication.LightBulbStateManager;
+import com.dlvjkb.hueapplication.ViewModel.LightBulbStateManager;
 import com.dlvjkb.hueapplication.R;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 

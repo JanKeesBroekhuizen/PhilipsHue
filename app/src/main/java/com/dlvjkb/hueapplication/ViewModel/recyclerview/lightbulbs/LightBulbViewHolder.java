@@ -1,18 +1,14 @@
-package com.dlvjkb.hueapplication.recyclerview.lightbulbs;
+package com.dlvjkb.hueapplication.ViewModel.recyclerview.lightbulbs;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.devs.vectorchildfinder.VectorChildFinder;
 import com.dlvjkb.hueapplication.R;
-import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbClickListener;
 
 public class LightBulbViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
 

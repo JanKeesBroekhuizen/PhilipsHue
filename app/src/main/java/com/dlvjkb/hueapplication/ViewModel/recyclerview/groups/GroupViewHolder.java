@@ -1,9 +1,7 @@
-package com.dlvjkb.hueapplication.recyclerview.groups;
+package com.dlvjkb.hueapplication.ViewModel.recyclerview.groups;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,8 +9,6 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dlvjkb.hueapplication.R;
-import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbClickListener;
-import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbViewHolder;
 
 public class GroupViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
 

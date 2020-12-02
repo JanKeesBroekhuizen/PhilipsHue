@@ -1,4 +1,4 @@
-package com.dlvjkb.hueapplication;
+package com.dlvjkb.hueapplication.View.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -6,19 +6,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
-import com.dlvjkb.hueapplication.fragments.LightsFragment;
+import com.dlvjkb.hueapplication.ViewModel.LightBulbStateManager;
+import com.dlvjkb.hueapplication.R;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 import com.flask.colorpicker.ColorPickerView;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class LightBulbDetailActivity extends AppCompatActivity {
     private int currentColor = 0;
@@ -30,14 +26,25 @@ public class LightBulbDetailActivity extends AppCompatActivity {
         setContentView(R.layout.detailactivity_lightbulb);
 
         lightBulb = (LightBulb) getIntent().getSerializableExtra("LightBulb");
-        //int position = getIntent().getIntExtra("position", 1);
+
+        float[] hsvArray = new float[]{lightBulb.state.hue / 182, lightBulb.state.sat / 254, lightBulb.state.bri / 254};
+        int color = Color.HSVToColor(hsvArray);
 
         ColorPickerView colorPickerView = findViewById(R.id.color_picker_view);
+        colorPickerView.setInitialColor(color, true);
         Button button = findViewById(R.id.button);
+
+
+        button.setBackgroundColor(color);
+
+        System.out.println("Hue: " + (int) lightBulb.state.hue + " - Sat: " + (int) lightBulb.state.sat + " - Bri: " + (int) lightBulb.state.bri + " - Color: " + color);
+
         SwitchCompat lightSwitch = findViewById(R.id.LightSwitch);
         lightSwitch.setChecked(lightBulb.state.on);
-        TextView textView = findViewById(R.id.tvLightBulbNameDetail);
-        textView.setText(lightBulb.name);
+        TextView tvLightBulbName = findViewById(R.id.tvLightBulbNameDetail);
+        tvLightBulbName.setText(lightBulb.name);
+        TextView tvLightBulbInfo = findViewById(R.id.tvLightBulbInfo);
+        tvLightBulbInfo.setText("Hue: " + (int) lightBulb.state.hue + " - Sat: " + (int) lightBulb.state.sat + " - Bri: " + (int) lightBulb.state.bri);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +61,8 @@ public class LightBulbDetailActivity extends AppCompatActivity {
                 lightBulb.state.sat = hsv[1] * 254;
                 lightBulb.state.bri = hsv[2] * 254;
                 LightBulbStateManager.getInstance(getApplicationContext()).setLightBulb(lightBulb);
+
+                tvLightBulbInfo.setText("Hue: " + (int) lightBulb.state.hue + " - Sat: " + (int) lightBulb.state.sat + " - Bri: " + (int) lightBulb.state.bri);
             }
         });
 
@@ -67,8 +76,9 @@ public class LightBulbDetailActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        LightBulbStateManager.getInstance(getApplicationContext()).setLightBulb(lightBulb);
-    }}
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        LightBulbStateManager.getInstance(getApplicationContext()).setLightBulb(lightBulb);
+//    }}
+}

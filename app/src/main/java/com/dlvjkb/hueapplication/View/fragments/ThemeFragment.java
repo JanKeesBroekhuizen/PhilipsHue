@@ -1,28 +1,23 @@
-package com.dlvjkb.hueapplication.fragments;
+package com.dlvjkb.hueapplication.View.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.ColorLong;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.dlvjkb.hueapplication.GroupActionManager;
+import com.dlvjkb.hueapplication.ViewModel.GroupActionManager;
 import com.dlvjkb.hueapplication.R;
 import com.dlvjkb.hueapplication.model.groups.Group;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
-import com.dlvjkb.hueapplication.recyclerview.groups.GroupListManager;
+import com.dlvjkb.hueapplication.ViewModel.recyclerview.groups.GroupListManager;
 
 public class ThemeFragment extends Fragment {
 

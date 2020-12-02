@@ -1,9 +1,8 @@
-package com.dlvjkb.hueapplication.fragments;
+package com.dlvjkb.hueapplication.View.fragments;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,20 +16,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.dlvjkb.hueapplication.GroupDetailActivity;
-import com.dlvjkb.hueapplication.HueGroupConnection;
-import com.dlvjkb.hueapplication.LightBulbDetailActivity;
+import com.dlvjkb.hueapplication.View.activities.LightBulbDetailActivity;
 import com.dlvjkb.hueapplication.R;
 import com.dlvjkb.hueapplication.model.groups.Group;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
-import com.dlvjkb.hueapplication.recyclerview.groups.GroupAdapter;
-import com.dlvjkb.hueapplication.recyclerview.groups.GroupClickListener;
-import com.dlvjkb.hueapplication.recyclerview.groups.GroupListListener;
-import com.dlvjkb.hueapplication.recyclerview.groups.GroupListManager;
-import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbAdapter;
-import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbClickListener;
-import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbListListener;
-import com.dlvjkb.hueapplication.recyclerview.lightbulbs.LightBulbListManager;
+import com.dlvjkb.hueapplication.ViewModel.recyclerview.groups.GroupAdapter;
+import com.dlvjkb.hueapplication.ViewModel.recyclerview.groups.GroupClickListener;
+import com.dlvjkb.hueapplication.ViewModel.recyclerview.groups.GroupListListener;
+import com.dlvjkb.hueapplication.ViewModel.recyclerview.groups.GroupListManager;
+import com.dlvjkb.hueapplication.ViewModel.recyclerview.lightbulbs.LightBulbAdapter;
+import com.dlvjkb.hueapplication.ViewModel.recyclerview.lightbulbs.LightBulbClickListener;
+import com.dlvjkb.hueapplication.ViewModel.recyclerview.lightbulbs.LightBulbListListener;
+import com.dlvjkb.hueapplication.ViewModel.recyclerview.lightbulbs.LightBulbListManager;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
