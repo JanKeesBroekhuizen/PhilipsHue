@@ -17,4 +17,5 @@
     <string name="String_ChangeColor">Change lightcolor</string>
     <string name="String_ExamplePort">e.g. 80</string>
     <string name="String_ExampleIP">e.g. 192.168.1.1</string>
+    <string name="String_NoGroup">No group selected.</string>
 </resources>

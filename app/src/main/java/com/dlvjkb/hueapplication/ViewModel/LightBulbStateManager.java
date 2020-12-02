@@ -62,13 +62,46 @@ public class LightBulbStateManager {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        //TODO
+
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //TODO
+
+                    }
+                }
+
+        );
+        requestQueue.add(putRequest);
+    }
+
+
+
+    public void changeName(LightBulb lightBulb){
+        JSONObject jsonObject = new JSONObject();
+
+        try{
+            jsonObject.put("name", lightBulb.name);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        final String url = "http://" + LightsFragment.ipAddress + ":" + LightsFragment.portNumber + "/api/newdeveloper/lights/"+ lightBulb.number;
+        JsonObjectRequest putRequest = new JsonObjectRequest(
+                Request.Method.PUT,
+                url,
+                jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
                     }
                 }
 

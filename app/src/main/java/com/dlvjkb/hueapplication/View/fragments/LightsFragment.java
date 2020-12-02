@@ -161,6 +161,7 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
             @Override
             public void onRefresh() {
                 startLightBulbs();
+                startGroups();
                 refreshLayoutLights.setRefreshing(false);
             }
         });
@@ -170,6 +171,7 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
             @Override
             public void onRefresh() {
                 startGroups();
+                startLightBulbs();
                 refreshLayoutGroups.setRefreshing(false);
             }
         });

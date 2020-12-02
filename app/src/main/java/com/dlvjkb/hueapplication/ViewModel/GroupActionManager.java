@@ -11,6 +11,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.dlvjkb.hueapplication.View.fragments.LightsFragment;
 import com.dlvjkb.hueapplication.model.groups.Group;
+import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,15 +62,38 @@ public class GroupActionManager {
                 jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        //TODO
-                    }
+                    public void onResponse(JSONObject response) { }
                 },
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //TODO
-                    }
+                    public void onErrorResponse(VolleyError error) { }
+                }
+
+        );
+        requestQueue.add(putRequest);
+    }
+
+    public void changeName(Group group){
+        JSONObject jsonObject = new JSONObject();
+
+        try{
+            jsonObject.put("name", group.name);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        final String url = "http://" + LightsFragment.ipAddress + ":" + LightsFragment.portNumber + "/api/newdeveloper/groups/"+ group.groupNumber;
+        JsonObjectRequest putRequest = new JsonObjectRequest(
+                Request.Method.PUT,
+                url,
+                jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) { }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) { }
                 }
 
         );

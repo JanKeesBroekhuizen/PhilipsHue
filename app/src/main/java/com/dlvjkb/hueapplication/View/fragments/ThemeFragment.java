@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,21 +51,26 @@ public class ThemeFragment extends Fragment {
         float[] hsvColor = new float[3];
         Color.colorToHSV(hexvalue, hsvColor);
         Group group = (Group) spinner.getSelectedItem();
-        group.action.on = true;
+        if (group != null){
+            group.action.on = true;
 
-        group.action.setHue(hsvColor[0] * 182);
-        group.action.setSat(hsvColor[1] * 254);
-        group.action.setBri(hsvColor[2] * 254);
+            group.action.setHue(hsvColor[0] * 182);
+            group.action.setSat(hsvColor[1] * 254);
+            group.action.setBri(hsvColor[2] * 254);
 
-        for (int i = 0; i < group.lightBulbs.size(); i++){
-            LightBulb lightBulb = group.lightBulbs.get(i);
-            lightBulb.state.on = true;
-            lightBulb.state.hue = hsvColor[0] * 182;
-            lightBulb.state.sat = hsvColor[1] * 254;
-            lightBulb.state.bri = hsvColor[2] * 254;
+            for (int i = 0; i < group.lightBulbs.size(); i++){
+                LightBulb lightBulb = group.lightBulbs.get(i);
+                lightBulb.state.on = true;
+                lightBulb.state.hue = hsvColor[0] * 182;
+                lightBulb.state.sat = hsvColor[1] * 254;
+                lightBulb.state.bri = hsvColor[2] * 254;
+            }
+
+            GroupActionManager.getInstance(getContext()).setGroup(group);
+        } else {
+            Toast.makeText(getContext(), R.string.String_NoGroup, Toast.LENGTH_SHORT).show();
         }
 
-        GroupActionManager.getInstance(getContext()).setGroup(group);
     }
 
     public void initButtons(){

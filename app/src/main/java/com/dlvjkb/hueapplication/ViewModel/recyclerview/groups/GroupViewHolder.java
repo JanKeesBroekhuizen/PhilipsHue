@@ -1,6 +1,7 @@
 package com.dlvjkb.hueapplication.ViewModel.recyclerview.groups;
 
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,14 +13,14 @@ import com.dlvjkb.hueapplication.R;
 
 public class GroupViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
 
-    public TextView GroupName;
+    public EditText GroupName;
     public ImageView GroupImage;
     public SwitchCompat groupSwitch;
     private GroupClickListener listener;
 
     public GroupViewHolder(@NonNull View itemView, GroupClickListener listener) {
         super(itemView);
-        this.GroupName = itemView.findViewById(R.id.tvGroupName);
+        this.GroupName = itemView.findViewById(R.id.etGroupName);
         this.GroupImage = itemView.findViewById(R.id.ivGroup);
         this.groupSwitch = itemView.findViewById(R.id.groupSwitch);
         this.listener = listener;

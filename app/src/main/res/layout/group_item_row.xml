@@ -19,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tvGroupName"
+            <EditText
+                android:id="@+id/etGroupName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -38,7 +38,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintEnd_toStartOf="@+id/tvGroupName"
+                card_view:layout_constraintEnd_toStartOf="@+id/etGroupName"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
                 card_view:srcCompat="@drawable/app_logo" />
@@ -51,9 +51,9 @@
                 android:layout_marginBottom="16dp"
                 android:text="@string/String_Switch"
                 card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintEnd_toEndOf="@+id/tvGroupName"
-                card_view:layout_constraintStart_toStartOf="@+id/tvGroupName"
-                card_view:layout_constraintTop_toBottomOf="@+id/tvGroupName"/>
+                card_view:layout_constraintEnd_toEndOf="@+id/etGroupName"
+                card_view:layout_constraintStart_toStartOf="@+id/etGroupName"
+                card_view:layout_constraintTop_toBottomOf="@+id/etGroupName"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,8 +42,8 @@ public class LightBulbDetailActivity extends AppCompatActivity {
 
         SwitchCompat lightSwitch = findViewById(R.id.LightSwitch);
         lightSwitch.setChecked(lightBulb.state.on);
-        TextView tvLightBulbName = findViewById(R.id.tvLightBulbNameDetail);
-        tvLightBulbName.setText(lightBulb.name);
+        EditText etLightBulbName = findViewById(R.id.etLightBulbNameDetail);
+        etLightBulbName.setText(lightBulb.name);
         TextView tvLightBulbInfo = findViewById(R.id.tvLightBulbInfo);
         tvLightBulbInfo.setText("Hue: " + (int) lightBulb.state.hue + " - Sat: " + (int) lightBulb.state.sat + " - Bri: " + (int) lightBulb.state.bri);
 
@@ -60,9 +61,13 @@ public class LightBulbDetailActivity extends AppCompatActivity {
                 lightBulb.state.hue = hsv[0] * 182;
                 lightBulb.state.sat = hsv[1] * 254;
                 lightBulb.state.bri = hsv[2] * 254;
-                LightBulbStateManager.getInstance(getApplicationContext()).setLightBulb(lightBulb);
 
-                tvLightBulbInfo.setText("Hue: " + (int) lightBulb.state.hue + " - Sat: " + (int) lightBulb.state.sat + " - Bri: " + (int) lightBulb.state.bri);
+                if (!etLightBulbName.getText().toString().equals(lightBulb.name)){
+                    lightBulb.name = etLightBulbName.getText().toString();
+                    LightBulbStateManager.getInstance(getApplicationContext()).changeName(lightBulb);
+                }
+
+                LightBulbStateManager.getInstance(getApplicationContext()).setLightBulb(lightBulb);
             }
         });
 
