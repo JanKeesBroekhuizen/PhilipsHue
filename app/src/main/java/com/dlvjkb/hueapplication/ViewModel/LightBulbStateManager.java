@@ -62,13 +62,13 @@ public class LightBulbStateManager {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
+                        Log.d(TAG,"Volley response " + response);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Log.d(TAG,"Volley error " + error.getLocalizedMessage());
                     }
                 }
 
