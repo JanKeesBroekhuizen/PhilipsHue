@@ -54,9 +54,9 @@ public class ThemeFragment extends Fragment {
         if (group != null){
             group.action.on = true;
 
-            group.action.setHue(hsvColor[0] * 182);
-            group.action.setSat(hsvColor[1] * 254);
-            group.action.setBri(hsvColor[2] * 254);
+            group.action.hue = hsvColor[0] * 182;
+            group.action.sat = hsvColor[1] * 254;
+            group.action.bri = hsvColor[2] * 254;
 
             for (int i = 0; i < group.lightBulbs.size(); i++){
                 LightBulb lightBulb = group.lightBulbs.get(i);

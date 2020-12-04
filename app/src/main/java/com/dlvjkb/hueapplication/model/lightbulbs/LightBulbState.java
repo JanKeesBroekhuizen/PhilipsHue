@@ -50,19 +50,7 @@ public class LightBulbState implements Serializable {
         return list;
     }
 
-    @Override
-    public String toString() {
-        return "State{" +
-                "xy=" + xy +
-                ", ct=" + ct +
-                ", alert='" + alert + '\'' +
-                ", sat=" + sat +
-                ", effect='" + effect + '\'' +
-                ", bri=" + bri +
-                ", hue=" + hue +
-                ", colorMode='" + colorMode + '\'' +
-                ", reachable=" + reachable +
-                ", on=" + on +
-                '}';
+    public void setOn(boolean on) {
+        this.on = on;
     }
 }
