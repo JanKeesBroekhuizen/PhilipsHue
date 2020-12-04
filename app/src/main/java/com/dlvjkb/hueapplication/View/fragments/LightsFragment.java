@@ -156,6 +156,7 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
     }
 
     public void initRefreshViews(View view){
+
         refreshLayoutLights = view.findViewById(R.id.refreshViewLights);
         refreshLayoutLights.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -176,11 +177,4 @@ public class LightsFragment extends Fragment implements LightBulbClickListener, 
             }
         });
     }
-
-//    public void refreshLightBulbs(){
-//        startLightBulbs();
-//        startGroups();
-//        addLightsToGroup();
-//    }
-
 }
