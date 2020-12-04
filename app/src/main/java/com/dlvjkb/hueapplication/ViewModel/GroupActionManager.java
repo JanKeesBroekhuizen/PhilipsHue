@@ -1,4 +1,4 @@
-package com.dlvjkb.hueapplication;
+package com.dlvjkb.hueapplication.ViewModel;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.dlvjkb.hueapplication.View.fragments.LightsFragment;
 import com.dlvjkb.hueapplication.model.groups.Group;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 
@@ -29,12 +30,14 @@ public class GroupActionManager {
     }
 
     private RequestQueue requestQueue;
-    private int portNumber;
+    private String portNumber;
+    private String ipAddress;
 
 
     GroupActionManager(Context context){
         this.requestQueue = Volley.newRequestQueue(context);
-        this.portNumber = 8000;
+        this.portNumber = LightsFragment.portNumber;
+        this.ipAddress = LightsFragment.ipAddress;
     }
     public void setGroup(Group group){
         JSONObject jsonObject = new JSONObject();
@@ -52,29 +55,56 @@ public class GroupActionManager {
             e.printStackTrace();
         }
 
-        final String url = "http://10.149.1.111:" + portNumber + "/api/newdeveloper/groups/"+ group.groupNumber + "/action";
+        final String url = "http://" + LightsFragment.ipAddress + ":" + LightsFragment.portNumber + "/api/newdeveloper/groups/"+ group.groupNumber + "/action";
         JsonObjectRequest putRequest = new JsonObjectRequest(
                 Request.Method.PUT,
                 url,
                 jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        //TODO
-                    }
+                    public void onResponse(JSONObject response) { }
                 },
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //TODO
-                    }
+                    public void onErrorResponse(VolleyError error) { }
                 }
 
         );
         requestQueue.add(putRequest);
     }
 
-    public void setPortNumber(int portNumber){
+    public void changeName(Group group){
+        JSONObject jsonObject = new JSONObject();
+
+        try{
+            jsonObject.put("name", group.name);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        final String url = "http://" + LightsFragment.ipAddress + ":" + LightsFragment.portNumber + "/api/newdeveloper/groups/"+ group.groupNumber;
+        JsonObjectRequest putRequest = new JsonObjectRequest(
+                Request.Method.PUT,
+                url,
+                jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) { }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) { }
+                }
+
+        );
+        requestQueue.add(putRequest);
+    }
+
+    public void setPortNumber(String portNumber){
         this.portNumber = portNumber;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 }

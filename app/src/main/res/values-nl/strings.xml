@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HueApplication</string>
+    <string name="String_GoodMorning">Hallo, goedemorgen.</string>
+    <string name="String_GoodAfternoon">Hallo, goedemiddag.</string>
+    <string name="String_GoodEvening">Hallo, goede avond</string>
+    <string name="String_Lights">Lampen</string>
+    <string name="String_Groups">Groepen</string>
+    <string name="String_Switch">Uit/Aan</string>
+    <string name="String_Themes">Thema\'s</string>
+    <string name="String_Settings">Instellingen</string>
+    <string name="String_IP">Brug IP-adres</string>
+    <string name="String_Port">Brug poortnummer</string>
+    <string name="String_Save">Opslaan</string>
+    <string name="String_Restart">Opnieuw opstarten AUB</string>
+    <string name="String_MadeBy">Gemaakt door: Jan Kees Broekhuizen / Dave Visser</string>
+    <string name="String_ChangeColor">Verander lichtkleur</string>
+    <string name="String_ExamplePort">bijv. 80</string>
+    <string name="String_ExampleIP">bijv. 192.168.1.1</string>
+    <string name="String_NoGroup">Geen groep geselecteerd.</string>
+</resources>

@@ -1,8 +1,10 @@
-package com.dlvjkb.hueapplication.recyclerview.groups;
+package com.dlvjkb.hueapplication.ViewModel.recyclerview.groups;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +14,7 @@ import android.widget.CompoundButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dlvjkb.hueapplication.GroupActionManager;
+import com.dlvjkb.hueapplication.ViewModel.GroupActionManager;
 import com.dlvjkb.hueapplication.R;
 import com.dlvjkb.hueapplication.model.groups.Group;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
@@ -54,10 +56,13 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupViewHolder> {
                     LightBulb lightBulb = group.lightBulbs.get(i);
                     lightBulb.state.on = isChecked;
                 }
+                if (!holder.GroupName.getText().toString().equals(group.name)){
+                    group.name = holder.GroupName.getText().toString();
+                    GroupActionManager.getInstance(context).changeName(group);
+                }
                 GroupActionManager.getInstance(context).setGroup(group);
             }
         });
-        holder.GroupImage.setImageBitmap(bitmap);
     }
 
     @Override

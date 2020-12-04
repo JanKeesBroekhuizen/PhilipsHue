@@ -1,4 +1,4 @@
-package com.dlvjkb.hueapplication;
+package com.dlvjkb.hueapplication.View.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,16 +11,15 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
-import com.dlvjkb.hueapplication.fragments.*;
-import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
+
+import com.dlvjkb.hueapplication.R;
+import com.dlvjkb.hueapplication.View.fragments.*;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
 public class MainScreenActivity extends AppCompatActivity {
 
-    private HueLightBulbConnection hueEmulatorConnection;
-    public static ArrayList<LightBulb> lightBulbs;
     private final String TAG = MainScreenActivity.class.getSimpleName();
     private final List<Fragment> accessibleFragments = new ArrayList<>();
     private Fragment currentFragment = null;
@@ -34,7 +33,7 @@ public class MainScreenActivity extends AppCompatActivity {
                     Log.d(TAG,"Fragment changed to " + change);
                     currentFragment = change;
                     break;
-                case R.id.menu_add:
+                case R.id.menu_themes:
                     change = accessibleFragments.get(1);
                     Log.d(TAG,"Fragment changed to " + change);
                     currentFragment = change;

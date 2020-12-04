@@ -1,9 +1,9 @@
-package com.dlvjkb.hueapplication.recyclerview.lightbulbs;
+package com.dlvjkb.hueapplication.ViewModel.recyclerview.lightbulbs;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.dlvjkb.hueapplication.HueLightBulbConnection;
+import com.dlvjkb.hueapplication.model.lightbulbs.HueLightBulbConnection;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulbLoadListener;
 
@@ -42,6 +42,7 @@ public class LightBulbListManager implements LightBulbLoadListener {
     public void startLightBulbs(Context context, LightBulbListListener listener){
         this.listener = listener;
         lightBulbs.clear();
+        Log.d("CLEAR","" + lightBulbs.size());
         this.listener.onLightBulbListChanged();
         //HueLightBulbConnection connection = HueLightBulbConnection.getInstance(context, this);
         HueLightBulbConnection.getInstance(context, this).getLightBulbs();

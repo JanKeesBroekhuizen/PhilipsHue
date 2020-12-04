@@ -1,4 +1,4 @@
-package com.dlvjkb.hueapplication;
+package com.dlvjkb.hueapplication.View.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.dlvjkb.hueapplication.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -24,7 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this,MainScreenActivity.class);
+                Intent intent = new Intent(SplashScreenActivity.this, MainScreenActivity.class);
                 SplashScreenActivity.this.startActivity(intent);
                 SplashScreenActivity.this.finish();
             }

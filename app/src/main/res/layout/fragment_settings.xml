@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clickable="true">
 
     <EditText
-        android:id="@+id/etBridgeIPAdress2"
+        android:id="@+id/etBridgePortNumber"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="e.g. 80"
+        android:hint="@string/String_ExamplePort"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tvBridgeIP2"
-        app:layout_constraintTop_toBottomOf="@+id/tvBridgeIP2" />
+        app:layout_constraintStart_toStartOf="@+id/tvBridgePortNumber"
+        app:layout_constraintTop_toBottomOf="@+id/tvBridgePortNumber" />
 
     <TextView
-        android:id="@+id/tvBridgeIP2"
+        android:id="@+id/tvBridgePortNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/lato_black"
-        android:text="Bridge port number"
+        android:text="@string/String_Port"
         app:layout_constraintStart_toStartOf="@+id/tvSettingsTitle"
         app:layout_constraintTop_toBottomOf="@+id/etBridgeIPAdress" />
 
@@ -36,7 +36,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/lato_black"
-        android:text="Settings"
+        android:text="@string/String_Settings"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/lato_black"
-        android:text="Bridge IP-address:"
+        android:text="@string/String_IP"
         app:layout_constraintStart_toStartOf="@+id/tvSettingsTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvSettingsTitle" />
 
@@ -58,7 +58,7 @@
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="e.g. 192.168.1.1"
+        android:hint="@string/String_ExampleIP"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvBridgeIP"
         app:layout_constraintTop_toBottomOf="@+id/tvBridgeIP" />
@@ -71,9 +71,19 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/lato_black"
-        android:text="Made By: Jan Kees Broekhuizen / Dave Visser"
+        android:text="@string/String_MadeBy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnSaveAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/String_Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etBridgePortNumber" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
