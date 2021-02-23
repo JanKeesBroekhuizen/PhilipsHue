@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.dlvjkb.hueapplication.R;
 
 public class SplashScreenActivity extends AppCompatActivity {

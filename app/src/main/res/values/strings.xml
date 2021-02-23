@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HueApplication</string>
+    <string name="app_name">Philips You</string>
     <string name="main_good_day" translatable="false">Good-day</string>
     <string name="String_GoodMorning">Hello, good mornging.</string>
     <string name="String_GoodAfternoon">Hello, good afternoon.</string>
@@ -18,4 +18,10 @@
     <string name="String_ExamplePort">e.g. 80</string>
     <string name="String_ExampleIP">e.g. 192.168.1.1</string>
     <string name="String_NoGroup">No group selected.</string>
+    <string name="String_Theme_Sunset">Sunset Clicked!</string>
+    <string name="String_Theme_Forest">Forest Clicked!</string>
+    <string name="String_Theme_Sunlight">Sunlight Clicked!</string>
+    <string name="String_Theme_Work">Work Clicked!</string>
+    <string name="String_Theme_Stars">Stars Clicked!</string>
+
 </resources>

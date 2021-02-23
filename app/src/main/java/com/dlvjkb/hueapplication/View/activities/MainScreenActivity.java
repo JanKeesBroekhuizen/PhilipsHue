@@ -5,17 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-
 import java.util.ArrayList;
-
 import com.dlvjkb.hueapplication.R;
 import com.dlvjkb.hueapplication.View.fragments.*;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.util.List;
 
 public class MainScreenActivity extends AppCompatActivity {

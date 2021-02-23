@@ -18,7 +18,6 @@ import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
 import com.flask.colorpicker.ColorPickerView;
 
 public class LightBulbDetailActivity extends AppCompatActivity {
-    private int currentColor = 0;
     private LightBulb lightBulb;
 
     @Override
@@ -34,7 +33,6 @@ public class LightBulbDetailActivity extends AppCompatActivity {
         ColorPickerView colorPickerView = findViewById(R.id.color_picker_view);
         colorPickerView.setInitialColor(color, true);
         Button button = findViewById(R.id.button);
-
 
         button.setBackgroundColor(color);
 
@@ -52,8 +50,6 @@ public class LightBulbDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("KLEUREN", "COLOR: " + colorPickerView.getSelectedColor());
                 button.setBackgroundColor(colorPickerView.getSelectedColor());
-                currentColor = colorPickerView.getSelectedColor();
-                String hexColor = String.format("#%06X", (0xFFFFFF & colorPickerView.getSelectedColor()));
 
                 float[] hsv = new float[3];
                 Color.colorToHSV(colorPickerView.getSelectedColor(), hsv);
@@ -80,10 +76,4 @@ public class LightBulbDetailActivity extends AppCompatActivity {
             }
         });
     }
-
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        LightBulbStateManager.getInstance(getApplicationContext()).setLightBulb(lightBulb);
-//    }}
 }

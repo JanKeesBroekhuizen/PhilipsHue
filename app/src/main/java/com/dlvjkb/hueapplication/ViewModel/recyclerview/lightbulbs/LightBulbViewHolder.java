@@ -3,11 +3,9 @@ package com.dlvjkb.hueapplication.ViewModel.recyclerview.lightbulbs;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.dlvjkb.hueapplication.R;
 
 public class LightBulbViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{

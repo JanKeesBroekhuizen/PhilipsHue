@@ -31,14 +31,10 @@ public class HueGroupConnection {
 
     private RequestQueue requestQueue;
     private GroupLoadListener listener;
-    private String portNumber;
-    private String ipAddress;
 
     HueGroupConnection(Context context, GroupLoadListener listener){
         this.requestQueue = Volley.newRequestQueue(context);
         this.listener = listener;
-        this.portNumber = LightsFragment.portNumber;
-        this.ipAddress = LightsFragment.ipAddress;
     }
 
     public void getGroups(){
@@ -72,13 +68,5 @@ public class HueGroupConnection {
                 }
         );
         requestQueue.add(request);
-    }
-
-    public void setPortNumber(String  portNumber){
-        this.portNumber = portNumber;
-    }
-
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
     }
 }
