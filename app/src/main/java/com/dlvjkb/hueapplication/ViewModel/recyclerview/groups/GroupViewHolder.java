@@ -3,12 +3,9 @@ package com.dlvjkb.hueapplication.ViewModel.recyclerview.groups;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.dlvjkb.hueapplication.R;
 
 public class GroupViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{

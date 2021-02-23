@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">HueApplication</string>
+    <string name="app_name">Philips Joe</string>
     <string name="String_GoodMorning">Hallo, goedemorgen.</string>
     <string name="String_GoodAfternoon">Hallo, goedemiddag.</string>
     <string name="String_GoodEvening">Hallo, goede avond</string>
@@ -18,4 +18,9 @@
     <string name="String_ExamplePort">bijv. 80</string>
     <string name="String_ExampleIP">bijv. 192.168.1.1</string>
     <string name="String_NoGroup">Geen groep geselecteerd.</string>
+    <string name="String_Theme_Sunset">Zonsondergang geselecteerd!</string>
+    <string name="String_Theme_Forest">Bos geselecteerd!</string>
+    <string name="String_Theme_Sunlight">Zonlicht geselecteerd!</string>
+    <string name="String_Theme_Work">Werk geseleceteerd!</string>
+    <string name="String_Theme_Stars">Sterren geselecteerd!</string>
 </resources>

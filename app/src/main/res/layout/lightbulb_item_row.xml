@@ -24,24 +24,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
                 android:fontFamily="@font/lato_black"
                 android:text="Lightbulb 1"
                 android:textSize="30sp"
-                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintEnd_toEndOf="@+id/LightSwitch"
                 card_view:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/ivLightBulb"
-                android:layout_width="0dp"
+                android:layout_width="100dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
                 card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintEnd_toStartOf="@+id/tvLightBulbName"
-                card_view:layout_constraintHorizontal_bias="0.0"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
                 card_view:srcCompat="@drawable/ic_bulb" />
@@ -51,11 +47,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/String_Switch"
                 card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintEnd_toEndOf="@+id/tvLightBulbName"
-                card_view:layout_constraintStart_toStartOf="@+id/tvLightBulbName"
+                card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/tvLightBulbName" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

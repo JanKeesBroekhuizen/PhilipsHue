@@ -1,13 +1,7 @@
 package com.dlvjkb.hueapplication.model.lightbulbs;
 
-import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
 public class LightBulb implements Serializable {
