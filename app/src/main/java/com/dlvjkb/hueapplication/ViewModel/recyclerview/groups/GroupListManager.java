@@ -2,11 +2,9 @@ package com.dlvjkb.hueapplication.ViewModel.recyclerview.groups;
 
 import android.content.Context;
 import android.util.Log;
-
 import com.dlvjkb.hueapplication.model.groups.HueGroupConnection;
 import com.dlvjkb.hueapplication.model.groups.Group;
 import com.dlvjkb.hueapplication.model.groups.GroupLoadListener;
-
 import java.util.ArrayList;
 
 public class GroupListManager implements GroupLoadListener {

@@ -6,16 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.devs.vectorchildfinder.VectorChildFinder;
 import com.devs.vectorchildfinder.VectorDrawableCompat;
 import com.dlvjkb.hueapplication.ViewModel.LightBulbStateManager;
 import com.dlvjkb.hueapplication.R;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
-
 import java.util.ArrayList;
 
 public class LightBulbAdapter extends RecyclerView.Adapter<LightBulbViewHolder>{
@@ -47,8 +44,6 @@ public class LightBulbAdapter extends RecyclerView.Adapter<LightBulbViewHolder>{
 
         holder.lightBulbName.setText(lightBulb.name);
         changeBulbColor(lightBulb,holder);
-        //Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_bulb);
-        //holder.lightBulbImage.setImageBitmap(bitmap);
         holder.lightSwitch.setChecked(lightBulb.state.on);
         holder.lightSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

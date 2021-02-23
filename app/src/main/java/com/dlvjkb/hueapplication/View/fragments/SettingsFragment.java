@@ -8,13 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.dlvjkb.hueapplication.R;
-import com.dlvjkb.hueapplication.View.activities.SplashScreenActivity;
+import com.dlvjkb.hueapplication.View.activities.MainScreenActivity;
 
 public class SettingsFragment extends Fragment {
 
@@ -51,7 +49,7 @@ public class SettingsFragment extends Fragment {
         LightsFragment.ipAddress = etIpAddress.getText().toString();
         LightsFragment.portNumber = etPortNumber.getText().toString();
 
-        Intent intent = new Intent(getContext(), SplashScreenActivity.class);
+        Intent intent = new Intent(getContext(), MainScreenActivity.class);
         getActivity().finish();
         startActivity(intent);
     }

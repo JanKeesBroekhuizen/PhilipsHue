@@ -11,8 +11,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.dlvjkb.hueapplication.View.fragments.LightsFragment;
 import com.dlvjkb.hueapplication.model.groups.Group;
-import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,14 +28,9 @@ public class GroupActionManager {
     }
 
     private RequestQueue requestQueue;
-    private String portNumber;
-    private String ipAddress;
-
 
     GroupActionManager(Context context){
         this.requestQueue = Volley.newRequestQueue(context);
-        this.portNumber = LightsFragment.portNumber;
-        this.ipAddress = LightsFragment.ipAddress;
     }
     public void setGroup(Group group){
         JSONObject jsonObject = new JSONObject();
@@ -62,11 +55,15 @@ public class GroupActionManager {
                 jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONObject response) { }
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG,"Volley response " + response);
+                    }
                 },
                 new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) { }
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG,"Volley error " + error.getLocalizedMessage());
+                    }
                 }
 
         );
@@ -98,13 +95,5 @@ public class GroupActionManager {
 
         );
         requestQueue.add(putRequest);
-    }
-
-    public void setPortNumber(String portNumber){
-        this.portNumber = portNumber;
-    }
-
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
     }
 }

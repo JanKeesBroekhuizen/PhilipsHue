@@ -8,12 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-
 import com.dlvjkb.hueapplication.ViewModel.GroupActionManager;
 import com.dlvjkb.hueapplication.R;
 import com.dlvjkb.hueapplication.model.groups.Group;
@@ -47,16 +45,15 @@ public class ThemeFragment extends Fragment {
 
 
     public void onThemeButtonClickAction(int hexvalue){
-        //Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
         float[] hsvColor = new float[3];
         Color.colorToHSV(hexvalue, hsvColor);
         Group group = (Group) spinner.getSelectedItem();
         if (group != null){
             group.action.on = true;
 
-            group.action.setHue(hsvColor[0] * 182);
-            group.action.setSat(hsvColor[1] * 254);
-            group.action.setBri(hsvColor[2] * 254);
+            group.action.hue = hsvColor[0] * 182;
+            group.action.sat = hsvColor[1] * 254;
+            group.action.bri = hsvColor[2] * 254;
 
             for (int i = 0; i < group.lightBulbs.size(); i++){
                 LightBulb lightBulb = group.lightBulbs.get(i);
@@ -77,30 +74,35 @@ public class ThemeFragment extends Fragment {
         btnSunsetTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(), R.string.String_Theme_Sunset, Toast.LENGTH_SHORT).show();
                 onThemeButtonClickAction(Integer.parseInt("FCB737", 16));
             }
         });
         btnForestTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(), R.string.String_Theme_Forest, Toast.LENGTH_SHORT).show();
                 onThemeButtonClickAction(Integer.parseInt("32c137", 16));
             }
         });
         btnSunLightTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(), R.string.String_Theme_Sunlight, Toast.LENGTH_SHORT).show();
                 onThemeButtonClickAction(Integer.parseInt("edf902", 16));
             }
         });
         btnStarsTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(), R.string.String_Theme_Stars, Toast.LENGTH_SHORT).show();
                 onThemeButtonClickAction(Integer.parseInt("090e26", 16));
             }
         });
         btnWorkTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(), R.string.String_Theme_Work, Toast.LENGTH_SHORT).show();
                 onThemeButtonClickAction(Integer.parseInt("99f7fc", 16));
             }
         });

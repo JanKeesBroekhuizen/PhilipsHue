@@ -29,15 +29,10 @@ public class HueLightBulbConnection {
     private final String TAG = HueLightBulbConnection.class.getName();
     private RequestQueue requestQueue;
     private LightBulbLoadListener listener;
-    private String portNumber;
-    private String ipAddress;
-
 
     HueLightBulbConnection(Context context, LightBulbLoadListener listener){
         this.requestQueue = Volley.newRequestQueue(context);
         this.listener = listener;
-        this.portNumber = LightsFragment.portNumber;
-        this.ipAddress = LightsFragment.ipAddress;
     }
 
     public void getLightBulbs(){
@@ -71,13 +66,5 @@ public class HueLightBulbConnection {
                 }
         );
         requestQueue.add(request);
-    }
-
-    public void setPortNumber(String portNumber){
-        this.portNumber = portNumber;
-    }
-
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
     }
 }

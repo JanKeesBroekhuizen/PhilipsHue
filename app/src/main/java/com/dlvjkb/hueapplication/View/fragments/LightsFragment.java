@@ -8,14 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.dlvjkb.hueapplication.View.activities.LightBulbDetailActivity;
 import com.dlvjkb.hueapplication.R;
 import com.dlvjkb.hueapplication.model.groups.Group;
@@ -28,7 +26,6 @@ import com.dlvjkb.hueapplication.ViewModel.recyclerview.lightbulbs.LightBulbAdap
 import com.dlvjkb.hueapplication.ViewModel.recyclerview.lightbulbs.LightBulbClickListener;
 import com.dlvjkb.hueapplication.ViewModel.recyclerview.lightbulbs.LightBulbListListener;
 import com.dlvjkb.hueapplication.ViewModel.recyclerview.lightbulbs.LightBulbListManager;
-
 import java.time.LocalTime;
 import java.util.ArrayList;
 

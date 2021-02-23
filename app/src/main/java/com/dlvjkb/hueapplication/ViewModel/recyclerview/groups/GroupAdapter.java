@@ -3,22 +3,17 @@ package com.dlvjkb.hueapplication.ViewModel.recyclerview.groups;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.dlvjkb.hueapplication.ViewModel.GroupActionManager;
 import com.dlvjkb.hueapplication.R;
 import com.dlvjkb.hueapplication.model.groups.Group;
 import com.dlvjkb.hueapplication.model.lightbulbs.LightBulb;
-
 import java.util.ArrayList;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupViewHolder> {

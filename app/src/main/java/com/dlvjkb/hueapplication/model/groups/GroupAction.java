@@ -43,16 +43,4 @@ public class GroupAction implements Serializable {
         }
         return list;
     }
-
-    public void setSat(float sat) {
-        this.sat = sat;
-    }
-
-    public void setBri(float bri) {
-        this.bri = bri;
-    }
-
-    public void setHue(float hue) {
-        this.hue = hue;
-    }
 }

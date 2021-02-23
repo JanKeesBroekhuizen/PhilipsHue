@@ -42,10 +42,6 @@ public class Group implements Serializable {
         return list;
     }
 
-    public void setLightBulbs(ArrayList<LightBulb> lightBulbs){
-        this.lightBulbs = lightBulbs;
-    }
-
     @NonNull
     @Override
     public String toString() {
