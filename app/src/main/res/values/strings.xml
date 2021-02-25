@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Philips You</string>
     <string name="main_good_day" translatable="false">Good-day</string>
-    <string name="String_GoodMorning">Hello, good mornging.</string>
+    <string name="String_GoodMorning">Hello, good morning.</string>
     <string name="String_GoodAfternoon">Hello, good afternoon.</string>
     <string name="String_GoodEvening">Hello, good evening.</string>
     <string name="String_Lights">Lights</string>
